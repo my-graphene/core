@@ -85,6 +85,9 @@ namespace graphene { namespace chain {
    using                               fc::ecc::range_proof_type;
    using                               fc::ecc::range_proof_info;
    using                               fc::ecc::commitment_type;
+
+   using bytes              = std::vector<char>;
+
    struct void_t{};
    using action_name      = name;
    using table_name       = name;
