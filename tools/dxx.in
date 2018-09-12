@@ -5,11 +5,11 @@ if [ "${DBX_BIN_INSTALL_DIR}" == "." ]; then
   DBX_BIN_INSTALL_DIR=`pwd`
 fi
 DBX_INSTALL_DIR=`dirname ${DBX_BIN_INSTALL_DIR}`
-ABIGEN=${DBX_INSTALL_DIR}/bin/gxc-abigen
+ABIGEN=${DBX_INSTALL_DIR}/bin/dbx-abigen
 BOOST_INCLUDE_DIR=@Boost_INCLUDE_DIR@
 function copy_skeleton {
     set -e
-    cp -r "${DBX_INSTALL_DIR}/share/gxc/skeleton/." $newname
+    cp -r "${DBX_INSTALL_DIR}/share/dbx/skeleton/." $newname
 
     for file in $(find ./$newname -name 'skeleton.*')
     do
@@ -52,15 +52,15 @@ function build_contract {
     done
 
     ($PRINT_CMDS; @WASM_LLVM_LINK@ -only-needed -o $workdir/linked.bc $workdir/built/* \
-                                   ${DBX_INSTALL_DIR}/usr/share/gxc/contractsdk/lib/graphenelib.bc \
-                                   ${DBX_INSTALL_DIR}/usr/share/gxc/contractsdk/lib/libc++.bc \
-                                   ${DBX_INSTALL_DIR}/usr/share/gxc/contractsdk/lib/libc.bc
+                                   ${DBX_INSTALL_DIR}/usr/share/dbx/contractsdk/lib/graphenelib.bc \
+                                   ${DBX_INSTALL_DIR}/usr/share/dbx/contractsdk/lib/libc++.bc \
+                                   ${DBX_INSTALL_DIR}/usr/share/dbx/contractsdk/lib/libc.bc
 
 
     )
     ($PRINT_CMDS; @WASM_LLC@ -thread-model=single --asm-verbose=false -o $workdir/assembly.s $workdir/linked.bc)
-    ($PRINT_CMDS; ${DBX_INSTALL_DIR}/bin/gxc-s2wasm -o $outname -s 16384 $workdir/assembly.s)
-    ($PRINT_CMDS; ${DBX_INSTALL_DIR}/bin/gxc-wast2wasm $outname ${outname%.*}.wasm -n)
+    ($PRINT_CMDS; ${DBX_INSTALL_DIR}/bin/dbx-s2wasm -o $outname -s 16384 $workdir/assembly.s)
+    ($PRINT_CMDS; ${DBX_INSTALL_DIR}/bin/dbx-wast2wasm $outname ${outname%.*}.wasm -n)
 
     ($PRINT_CMDS; rm -rf $workdir)
     set +e
