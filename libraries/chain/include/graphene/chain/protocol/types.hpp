@@ -85,6 +85,9 @@ namespace graphene { namespace chain {
    using                               fc::ecc::range_proof_info;
    using                               fc::ecc::commitment_type;
    struct void_t{};
+   using action_name      = name;
+   using table_name       = name;
+   typedef vector<std::pair<uint16_t,vector<char>>> abi_extensions_type;
 
    typedef fc::ecc::private_key        private_key_type;
    typedef fc::sha256 chain_id_type;
