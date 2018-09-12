@@ -125,7 +125,7 @@ private:
    std::string fee(const asset& a) const;
 
 public:
-   operation_printer( ostream& out, const wallet_api_impl& wallet, const operation_result& r = operation_result() )
+   operation_printer( std::ostream& out, const wallet_api_impl& wallet, const operation_result& r = operation_result() )
 	  : out(out),
 		wallet(wallet),
 		result(r)
@@ -475,7 +475,7 @@ public:
 	  while( fc::exists(dest_path) )
 	  {
 		 ++suffix;
-		 dest_path = destination_filename + "-" + to_string( suffix ) + _wallet_filename_extension;
+		 dest_path = destination_filename + "-" + fc::to_string( suffix ) + _wallet_filename_extension;
 	  }
 	  wlog( "backing up wallet ${src} to ${dest}",
 			("src", src_path)
@@ -2902,7 +2902,7 @@ public:
    static_variant_map _operation_which_map = create_static_variant_map< operation >();
 
 #ifdef __unix__
-   mode_t                  _old_umask;
+   unsigned int  _old_umask;
 #endif
    const string _wallet_filename_extension = ".wallet";
 };
