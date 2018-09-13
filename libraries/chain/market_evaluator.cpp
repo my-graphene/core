@@ -90,7 +90,9 @@ void limit_order_create_evaluator::pay_fee()
    }
 }
 
-object_id_type limit_order_create_evaluator::do_apply(const limit_order_create_operation& op)
+//liruigang20180913 contract
+//object_id_type limit_order_create_evaluator::do_apply(const limit_order_create_operation& op)
+object_id_type limit_order_create_evaluator::do_apply(const limit_order_create_operation& op, int32_t billed_cpu_time_us)
 { try {
    const auto& seller_stats = _seller->statistics(db());
    db().modify(seller_stats, [&](account_statistics_object& bal) {
@@ -132,7 +134,9 @@ void_result limit_order_cancel_evaluator::do_evaluate(const limit_order_cancel_o
    return void_result();
 } FC_CAPTURE_AND_RETHROW( (o) ) }
 
-asset limit_order_cancel_evaluator::do_apply(const limit_order_cancel_operation& o)
+//liruigang20180913 contract
+//asset limit_order_cancel_evaluator::do_apply(const limit_order_cancel_operation& o)
+asset limit_order_cancel_evaluator::do_apply(const limit_order_cancel_operation& o, int32_t billed_cpu_time_us)
 { try {
    database& d = db();
 
@@ -191,7 +195,9 @@ void_result call_order_update_evaluator::do_evaluate(const call_order_update_ope
 } FC_CAPTURE_AND_RETHROW( (o) ) }
 
 
-void_result call_order_update_evaluator::do_apply(const call_order_update_operation& o)
+//liruigang20180913 contract
+//void_result call_order_update_evaluator::do_apply(const call_order_update_operation& o)
+void_result call_order_update_evaluator::do_apply(const call_order_update_operation& o, int32_t billed_cpu_time_us)
 { try {
    database& d = db();
 
@@ -375,7 +381,9 @@ void_result bid_collateral_evaluator::do_evaluate(const bid_collateral_operation
 } FC_CAPTURE_AND_RETHROW( (o) ) }
 
 
-void_result bid_collateral_evaluator::do_apply(const bid_collateral_operation& o)
+//liruigang20180913 contract
+//void_result bid_collateral_evaluator::do_apply(const bid_collateral_operation& o)
+void_result bid_collateral_evaluator::do_apply(const bid_collateral_operation& o, int32_t billed_cpu_time_us)
 { try {
    database& d = db();
 

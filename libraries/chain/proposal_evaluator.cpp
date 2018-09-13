@@ -174,7 +174,9 @@ void_result proposal_create_evaluator::do_evaluate(const proposal_create_operati
    return void_result();
 } FC_CAPTURE_AND_RETHROW( (o) ) }
 
-object_id_type proposal_create_evaluator::do_apply(const proposal_create_operation& o)
+//liruigang20180913 contract
+//object_id_type proposal_create_evaluator::do_apply(const proposal_create_operation& o)
+object_id_type proposal_create_evaluator::do_apply(const proposal_create_operation& o, int32_t billed_cpu_time_us)
 { try {
    database& d = db();
 
@@ -242,7 +244,9 @@ void_result proposal_update_evaluator::do_evaluate(const proposal_update_operati
    return void_result();
 } FC_CAPTURE_AND_RETHROW( (o) ) }
 
-void_result proposal_update_evaluator::do_apply(const proposal_update_operation& o)
+//liruigang20180913 contract
+//void_result proposal_update_evaluator::do_apply(const proposal_update_operation& o)
+void_result proposal_update_evaluator::do_apply(const proposal_update_operation& o, int32_t billed_cpu_time_us)
 { try {
    database& d = db();
 
@@ -298,7 +302,9 @@ void_result proposal_delete_evaluator::do_evaluate(const proposal_delete_operati
    return void_result();
 } FC_CAPTURE_AND_RETHROW( (o) ) }
 
-void_result proposal_delete_evaluator::do_apply(const proposal_delete_operation& o)
+//liruigang20180913 contract
+//void_result proposal_delete_evaluator::do_apply(const proposal_delete_operation& o)
+void_result proposal_delete_evaluator::do_apply(const proposal_delete_operation& o, int32_t billed_cpu_time_us)
 { try {
    db().remove(*_proposal);
 

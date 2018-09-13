@@ -78,7 +78,9 @@ struct init_policy_visitor
    }
 };
 
-object_id_type vesting_balance_create_evaluator::do_apply( const vesting_balance_create_operation& op )
+//liruigang20180913 contract
+//object_id_type vesting_balance_create_evaluator::do_apply( const vesting_balance_create_operation& op )
+object_id_type vesting_balance_create_evaluator::do_apply( const vesting_balance_create_operation& op, int32_t billed_cpu_time_us)
 { try {
    database& d = db();
    const time_point_sec now = d.head_block_time();
@@ -114,7 +116,9 @@ void_result vesting_balance_withdraw_evaluator::do_evaluate( const vesting_balan
    return void_result();
 } FC_CAPTURE_AND_RETHROW( (op) ) }
 
-void_result vesting_balance_withdraw_evaluator::do_apply( const vesting_balance_withdraw_operation& op )
+//liruigang20180913 contract
+//void_result vesting_balance_withdraw_evaluator::do_apply( const vesting_balance_withdraw_operation& op )
+void_result vesting_balance_withdraw_evaluator::do_apply( const vesting_balance_withdraw_operation& op, int32_t billed_cpu_time_us)
 { try {
    database& d = db();
    const time_point_sec now = d.head_block_time();

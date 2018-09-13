@@ -33,7 +33,9 @@ namespace graphene { namespace chain {
          typedef witness_create_operation operation_type;
 
          void_result do_evaluate( const witness_create_operation& o );
-         object_id_type do_apply( const witness_create_operation& o );
+         //liruigang20180913 contract
+         //object_id_type do_apply( const witness_create_operation& o );
+         object_id_type do_apply( const witness_create_operation& o, uint32_t billed_cpu_time_us = 0);
    };
 
    class witness_update_evaluator : public evaluator<witness_update_evaluator>
@@ -42,7 +44,9 @@ namespace graphene { namespace chain {
          typedef witness_update_operation operation_type;
 
          void_result do_evaluate( const witness_update_operation& o );
-         void_result do_apply( const witness_update_operation& o );
+         //liruigang20180913 contract
+         //void_result do_apply( const witness_update_operation& o );
+         void_result do_apply( const witness_update_operation& o, uint32_t billed_cpu_time_us = 0);
    };
 
 } } // graphene::chain

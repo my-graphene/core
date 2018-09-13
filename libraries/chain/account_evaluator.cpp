@@ -165,7 +165,9 @@ void_result account_create_evaluator::do_evaluate( const account_create_operatio
    return void_result();
 } FC_CAPTURE_AND_RETHROW( (op) ) }
 
-object_id_type account_create_evaluator::do_apply( const account_create_operation& o )
+//liruigang20180913 contract
+//object_id_type account_create_evaluator::do_apply( const account_create_operation& o )
+object_id_type account_create_evaluator::do_apply( const account_create_operation& o, int32_t billed_cpu_time_us )
 { try {
 
    database& d = db();
@@ -302,7 +304,9 @@ void_result account_update_evaluator::do_evaluate( const account_update_operatio
    return void_result();
 } FC_CAPTURE_AND_RETHROW( (o) ) }
 
-void_result account_update_evaluator::do_apply( const account_update_operation& o )
+//liruigang20180913 contract
+//void_result account_update_evaluator::do_apply( const account_update_operation& o )
+void_result account_update_evaluator::do_apply( const account_update_operation& o, int32_t billed_cpu_time_us )
 { try {
    database& d = db();
    bool sa_before, sa_after;
@@ -361,7 +365,9 @@ void_result account_whitelist_evaluator::do_evaluate(const account_whitelist_ope
    return void_result();
 } FC_CAPTURE_AND_RETHROW( (o) ) }
 
-void_result account_whitelist_evaluator::do_apply(const account_whitelist_operation& o)
+//liruigang20180913 contract
+//void_result account_whitelist_evaluator::do_apply(const account_whitelist_operation& o)
+void_result account_whitelist_evaluator::do_apply(const account_whitelist_operation& o, int32_t billed_cpu_time_us )
 { try {
    database& d = db();
 
@@ -404,7 +410,9 @@ void_result account_upgrade_evaluator::do_evaluate(const account_upgrade_evaluat
 //} FC_CAPTURE_AND_RETHROW( (o) ) }
 } FC_RETHROW_EXCEPTIONS( error, "Unable to upgrade account '${a}'", ("a",o.account_to_upgrade(db()).name) ) }
 
-void_result account_upgrade_evaluator::do_apply(const account_upgrade_evaluator::operation_type& o)
+//liruigang20180913 contract
+//void_result account_upgrade_evaluator::do_apply(const account_upgrade_evaluator::operation_type& o)
+void_result account_upgrade_evaluator::do_apply(const account_upgrade_evaluator::operation_type& o, int32_t billed_cpu_time_us )
 { try {
    database& d = db();
 
