@@ -1,0 +1,6 @@
+// hardfork 1008 liruigang20180913 contract
+// core asset hardfork
+// 2018-11-01 00:00:00
+#ifndef HARDFORK_1008_TIME
+#define HARDFORK_1008_TIME (fc::time_point_sec( 1541001600 ))
+#endif
