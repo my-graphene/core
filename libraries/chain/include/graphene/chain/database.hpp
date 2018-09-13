@@ -518,6 +518,10 @@ namespace graphene { namespace chain {
 
          flat_map<uint32_t,block_id_type>  _checkpoints;
 
+         //liruigang20180913 contract
+         // max transaction cpu time, configured by config.ini
+         int32_t                           _max_trx_cpu_time;
+
          node_property_object              _node_property_object;
 
          /**
@@ -528,6 +532,8 @@ namespace graphene { namespace chain {
           * database::close() has not been called, or failed during execution.
           */
          bool                              _opened = false;
+         bool                              contract_log_to_console = false;   //liruigan20180913 contract
+         bool                              rpc_mock_calc_fee = false;   //liruigan20180913 contract
    };
 
    namespace detail
