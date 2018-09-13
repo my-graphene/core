@@ -25,6 +25,8 @@
 #include <graphene/app/database_api.hpp>
 #include <graphene/app/util.hpp>
 #include <graphene/chain/get_config.hpp>
+//liruigang20180913 contract
+#include <graphene/chain/contract_table_objects.hpp>
 
 #include <fc/bloom_filter.hpp>
 #include <fc/smart_ref_impl.hpp>
@@ -35,6 +37,9 @@
 #include <boost/range/iterator_range.hpp>
 #include <boost/rational.hpp>
 #include <boost/multiprecision/cpp_int.hpp>
+
+//liruigang20180913 contract
+#include <graphene/chain/abi_serializer.hpp>
 
 #include <cctype>
 
@@ -92,6 +97,8 @@ class database_api_impl : public std::enable_shared_from_this<database_api_impl>
       vector<optional<account_object>> get_accounts(const vector<account_id_type>& account_ids)const;
       std::map<string,full_account> get_full_accounts( const vector<string>& names_or_ids, bool subscribe );
       optional<account_object> get_account_by_name( string name )const;
+	  //liruigang 20180913 contract
+	  optional<account_object> get_account_by_contract_code(uint64_t code)const;
       vector<account_id_type> get_account_references( account_id_type account_id )const;
       vector<optional<account_object>> lookup_account_names(const vector<string>& account_names)const;
       map<string,account_id_type> lookup_accounts(const string& lower_bound_name, uint32_t limit)const;
@@ -814,6 +821,18 @@ optional<account_object> database_api_impl::get_account_by_name( string name )co
       return *itr;
    return optional<account_object>();
 }
+
+//liruigang20180913 contract
+optional<account_object> database_api_impl::get_account_by_contract_code(uint64_t code)const
+{
+   object_id_type oid(1, 2, code & GRAPHENE_DB_MAX_INSTANCE_ID);
+   const auto& idx = _db.get_index_type<account_index>().indices().get<by_id>();
+   auto itr = idx.find(oid);
+   if (itr != idx.end())
+      return *itr;
+   return optional<account_object>();
+}
+
 
 vector<account_id_type> database_api::get_account_references( account_id_type account_id )const
 {
