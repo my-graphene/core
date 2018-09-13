@@ -3,6 +3,7 @@
 #include <graphene/chain/protocol/authority.hpp>
 #include <graphene/chain/protocol/operations.hpp>
 #include <graphene/chain/protocol/transaction.hpp>
+#include <graphene/chain/protocol/types.hpp>  //liruigang20180913 contract
 #include <graphene/chain/withdraw_permission_object.hpp>
 #include <graphene/chain/database.hpp>
 #include <graphene/chain/worker_object.hpp>
@@ -416,6 +417,9 @@ static void get_relevant_accounts( const object* obj, flat_set<account_id_type>&
               accounts.insert( aobj->bidder );
               break;
            }
+		   //liruigang20180913 contract
+           case impl_table_id_object_type:
+           break;
       }
    }
 } // end get_relevant_accounts( const object* obj, flat_set<account_id_type>& accounts )
