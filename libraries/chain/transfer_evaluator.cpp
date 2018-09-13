@@ -76,7 +76,7 @@ void_result transfer_evaluator::do_evaluate( const transfer_operation& op )
 
 //liruigang20180913 contract
 //void_result transfer_evaluator::do_apply( const transfer_operation& o )
-void_result transfer_evaluator::do_apply( const transfer_operation& o, int32_t billed_cpu_time_us)
+void_result transfer_evaluator::do_apply( const transfer_operation& o, uint32_t billed_cpu_time_us)
 { try {
    db().adjust_balance( o.from, -o.amount );
    db().adjust_balance( o.to, o.amount );
@@ -118,7 +118,7 @@ void_result override_transfer_evaluator::do_evaluate( const override_transfer_op
 
 //liruigang20180913 contract
 //void_result override_transfer_evaluator::do_apply( const override_transfer_operation& o )
-void_result override_transfer_evaluator::do_apply( const override_transfer_operation& o, int32_t billed_cpu_time_us)
+void_result override_transfer_evaluator::do_apply( const override_transfer_operation& o, uint32_t billed_cpu_time_us)
 { try {
    db().adjust_balance( o.from, -o.amount );
    db().adjust_balance( o.to, o.amount );

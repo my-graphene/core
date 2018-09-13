@@ -115,7 +115,7 @@ void asset_create_evaluator::pay_fee()
 
 //liruigang20180913 contract
 //object_id_type asset_create_evaluator::do_apply( const asset_create_operation& op )
-object_id_type asset_create_evaluator::do_apply( const asset_create_operation& op, int32_t billed_cpu_time_us )
+object_id_type asset_create_evaluator::do_apply( const asset_create_operation& op, uint32_t billed_cpu_time_us )
 { try {
    bool hf_429 = fee_is_odd && db().head_block_time() > HARDFORK_CORE_429_TIME;
 
@@ -181,7 +181,7 @@ void_result asset_issue_evaluator::do_evaluate( const asset_issue_operation& o )
 
 //liruigang20180913 contract
 //void_result asset_issue_evaluator::do_apply( const asset_issue_operation& o )
-void_result asset_issue_evaluator::do_apply( const asset_issue_operation& o, int32_t billed_cpu_time_us )
+void_result asset_issue_evaluator::do_apply( const asset_issue_operation& o, uint32_t billed_cpu_time_us )
 { try {
    db().adjust_balance( o.issue_to_account, o.asset_to_issue );
 
@@ -215,7 +215,7 @@ void_result asset_reserve_evaluator::do_evaluate( const asset_reserve_operation&
 
 //liruigang20180913 contract
 //void_result asset_reserve_evaluator::do_apply( const asset_reserve_operation& o )
-void_result asset_reserve_evaluator::do_apply( const asset_reserve_operation& o, int32_t billed_cpu_time_us )
+void_result asset_reserve_evaluator::do_apply( const asset_reserve_operation& o, uint32_t billed_cpu_time_us )
 { try {
    db().adjust_balance( o.payer, -o.amount_to_reserve );
 
@@ -239,7 +239,7 @@ void_result asset_fund_fee_pool_evaluator::do_evaluate(const asset_fund_fee_pool
 
 //liruigang20180913 contract
 //void_result asset_fund_fee_pool_evaluator::do_apply(const asset_fund_fee_pool_operation& o)
-void_result asset_fund_fee_pool_evaluator::do_apply(const asset_fund_fee_pool_operation& o, int32_t billed_cpu_time_us )
+void_result asset_fund_fee_pool_evaluator::do_apply(const asset_fund_fee_pool_operation& o, uint32_t billed_cpu_time_us )
 { try {
    db().adjust_balance(o.from_account, -o.amount);
 
@@ -313,7 +313,7 @@ void_result asset_update_evaluator::do_evaluate(const asset_update_operation& o)
 
 //liruigang20180913 contract
 //void_result asset_update_evaluator::do_apply(const asset_update_operation& o)
-void_result asset_update_evaluator::do_apply(const asset_update_operation& o, int32_t billed_cpu_time_us )
+void_result asset_update_evaluator::do_apply(const asset_update_operation& o, uint32_t billed_cpu_time_us )
 { try {
    database& d = db();
 
@@ -362,7 +362,7 @@ void_result asset_update_issuer_evaluator::do_evaluate(const asset_update_issuer
 
 //liruigang20180913 contract
 //void_result asset_update_issuer_evaluator::do_apply(const asset_update_issuer_operation& o)
-void_result asset_update_issuer_evaluator::do_apply(const asset_update_issuer_operation& o, int32_t billed_cpu_time_us )
+void_result asset_update_issuer_evaluator::do_apply(const asset_update_issuer_operation& o, uint32_t billed_cpu_time_us )
 { try {
    database& d = db();
    d.modify(*asset_to_update, [&](asset_object& a) {
@@ -712,7 +712,7 @@ static bool update_bitasset_object_options(
 
 //liruigang20180913 contract
 //void_result asset_update_bitasset_evaluator::do_apply(const asset_update_bitasset_operation& op)
-void_result asset_update_bitasset_evaluator::do_apply(const asset_update_bitasset_operation& op, int32_t billed_cpu_time_us )
+void_result asset_update_bitasset_evaluator::do_apply(const asset_update_bitasset_operation& op, uint32_t billed_cpu_time_us )
 {
    try
    {
@@ -756,7 +756,7 @@ void_result asset_update_feed_producers_evaluator::do_evaluate(const asset_updat
 
 //liruigang20180913 contract
 //void_result asset_update_feed_producers_evaluator::do_apply(const asset_update_feed_producers_evaluator::operation_type& o)
-void_result asset_update_feed_producers_evaluator::do_apply(const asset_update_feed_producers_evaluator::operation_type& o, int32_t billed_cpu_time_us )
+void_result asset_update_feed_producers_evaluator::do_apply(const asset_update_feed_producers_evaluator::operation_type& o, uint32_t billed_cpu_time_us )
 { try {
    db().modify(*bitasset_to_update, [&](asset_bitasset_data_object& a) {
       //This is tricky because I have a set of publishers coming in, but a map of publisher to feed is stored.
@@ -808,7 +808,7 @@ void_result asset_global_settle_evaluator::do_evaluate(const asset_global_settle
 
 //liruigang20180913 contract
 //void_result asset_global_settle_evaluator::do_apply(const asset_global_settle_evaluator::operation_type& op)
-void_result asset_global_settle_evaluator::do_apply(const asset_global_settle_evaluator::operation_type& op, int32_t billed_cpu_time_us )
+void_result asset_global_settle_evaluator::do_apply(const asset_global_settle_evaluator::operation_type& op, uint32_t billed_cpu_time_us )
 { try {
    database& d = db();
    d.globally_settle_asset( op.asset_to_settle(db()), op.settle_price );
@@ -835,7 +835,7 @@ void_result asset_settle_evaluator::do_evaluate(const asset_settle_evaluator::op
 
 //liruigang20180913 contract
 //operation_result asset_settle_evaluator::do_apply(const asset_settle_evaluator::operation_type& op)
-operation_result asset_settle_evaluator::do_apply(const asset_settle_evaluator::operation_type& op, int32_t billed_cpu_time_us )
+operation_result asset_settle_evaluator::do_apply(const asset_settle_evaluator::operation_type& op, uint32_t billed_cpu_time_us )
 { try {
    database& d = db();
 
@@ -945,7 +945,7 @@ void_result asset_publish_feeds_evaluator::do_evaluate(const asset_publish_feed_
 
 //liruigang20180913 contract
 //void_result asset_publish_feeds_evaluator::do_apply(const asset_publish_feed_operation& o)
-void_result asset_publish_feeds_evaluator::do_apply(const asset_publish_feed_operation& o, int32_t billed_cpu_time_us )
+void_result asset_publish_feeds_evaluator::do_apply(const asset_publish_feed_operation& o, uint32_t billed_cpu_time_us )
 { try {
 
    database& d = db();
@@ -990,7 +990,7 @@ void_result asset_claim_fees_evaluator::do_evaluate( const asset_claim_fees_oper
 
 //liruigang20180913 contract
 //void_result asset_claim_fees_evaluator::do_apply( const asset_claim_fees_operation& o )
-void_result asset_claim_fees_evaluator::do_apply( const asset_claim_fees_operation& o, int32_t billed_cpu_time_us )
+void_result asset_claim_fees_evaluator::do_apply( const asset_claim_fees_operation& o, uint32_t billed_cpu_time_us )
 { try {
    database& d = db();
 
@@ -1019,7 +1019,7 @@ void_result asset_claim_pool_evaluator::do_evaluate( const asset_claim_pool_oper
 
 //liruigang20180913 contract
 //void_result asset_claim_pool_evaluator::do_apply( const asset_claim_pool_operation& o )
-void_result asset_claim_pool_evaluator::do_apply( const asset_claim_pool_operation& o, int32_t billed_cpu_time_us )
+void_result asset_claim_pool_evaluator::do_apply( const asset_claim_pool_operation& o, uint32_t billed_cpu_time_us )
 { try {
     database& d = db();
 

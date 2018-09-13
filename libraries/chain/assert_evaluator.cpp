@@ -71,7 +71,7 @@ void_result assert_evaluator::do_evaluate( const assert_operation& o )
 
 //liruigang20180913 contract
 //void_result assert_evaluator::do_apply( const assert_operation& o )
-void_result assert_evaluator::do_apply( const assert_operation& o, int32_t billed_cpu_time_us )
+void_result assert_evaluator::do_apply( const assert_operation& o, uint32_t billed_cpu_time_us )
 { try {
    // assert_operation is always a no-op
    return void_result();

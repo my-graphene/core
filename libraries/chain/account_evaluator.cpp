@@ -167,7 +167,7 @@ void_result account_create_evaluator::do_evaluate( const account_create_operatio
 
 //liruigang20180913 contract
 //object_id_type account_create_evaluator::do_apply( const account_create_operation& o )
-object_id_type account_create_evaluator::do_apply( const account_create_operation& o, int32_t billed_cpu_time_us )
+object_id_type account_create_evaluator::do_apply( const account_create_operation& o, uint32_t billed_cpu_time_us )
 { try {
 
    database& d = db();
@@ -306,7 +306,7 @@ void_result account_update_evaluator::do_evaluate( const account_update_operatio
 
 //liruigang20180913 contract
 //void_result account_update_evaluator::do_apply( const account_update_operation& o )
-void_result account_update_evaluator::do_apply( const account_update_operation& o, int32_t billed_cpu_time_us )
+void_result account_update_evaluator::do_apply( const account_update_operation& o, uint32_t billed_cpu_time_us )
 { try {
    database& d = db();
    bool sa_before, sa_after;
@@ -367,7 +367,7 @@ void_result account_whitelist_evaluator::do_evaluate(const account_whitelist_ope
 
 //liruigang20180913 contract
 //void_result account_whitelist_evaluator::do_apply(const account_whitelist_operation& o)
-void_result account_whitelist_evaluator::do_apply(const account_whitelist_operation& o, int32_t billed_cpu_time_us )
+void_result account_whitelist_evaluator::do_apply(const account_whitelist_operation& o, uint32_t billed_cpu_time_us )
 { try {
    database& d = db();
 
@@ -412,7 +412,7 @@ void_result account_upgrade_evaluator::do_evaluate(const account_upgrade_evaluat
 
 //liruigang20180913 contract
 //void_result account_upgrade_evaluator::do_apply(const account_upgrade_evaluator::operation_type& o)
-void_result account_upgrade_evaluator::do_apply(const account_upgrade_evaluator::operation_type& o, int32_t billed_cpu_time_us )
+void_result account_upgrade_evaluator::do_apply(const account_upgrade_evaluator::operation_type& o, uint32_t billed_cpu_time_us )
 { try {
    database& d = db();
 

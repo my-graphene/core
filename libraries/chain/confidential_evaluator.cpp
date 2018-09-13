@@ -53,7 +53,7 @@ void_result transfer_to_blind_evaluator::do_evaluate( const transfer_to_blind_op
 
 //liruigang20180913 contract
 //void_result transfer_to_blind_evaluator::do_apply( const transfer_to_blind_operation& o ) 
-void_result transfer_to_blind_evaluator::do_apply( const transfer_to_blind_operation& o, int32_t billed_cpu_time_us)
+void_result transfer_to_blind_evaluator::do_apply( const transfer_to_blind_operation& o, uint32_t billed_cpu_time_us)
 { try {
    db().adjust_balance( o.from, -o.amount ); 
 
@@ -99,7 +99,7 @@ void_result transfer_from_blind_evaluator::do_evaluate( const transfer_from_blin
 
 //liruigang20180913 contract
 //void_result transfer_from_blind_evaluator::do_apply( const transfer_from_blind_operation& o ) 
-void_result transfer_from_blind_evaluator::do_apply( const transfer_from_blind_operation& o, int32_t billed_cpu_time_us)
+void_result transfer_from_blind_evaluator::do_apply( const transfer_from_blind_operation& o, uint32_t billed_cpu_time_us)
 { try {
    db().adjust_balance( o.fee_payer(), o.fee ); 
    db().adjust_balance( o.to, o.amount ); 
@@ -150,7 +150,7 @@ void_result blind_transfer_evaluator::do_evaluate( const blind_transfer_operatio
 
 //liruigang20180913 contract
 //void_result blind_transfer_evaluator::do_apply( const blind_transfer_operation& o ) 
-void_result blind_transfer_evaluator::do_apply( const blind_transfer_operation& o, int32_t billed_cpu_time_us)
+void_result blind_transfer_evaluator::do_apply( const blind_transfer_operation& o, uint32_t billed_cpu_time_us)
 { try {
    db().adjust_balance( o.fee_payer(), o.fee ); // deposit the fee to the temp account
    const auto& bbi = db().get_index_type<blinded_balance_index>();
