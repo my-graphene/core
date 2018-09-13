@@ -37,6 +37,8 @@
 #include <graphene/chain/exceptions.hpp>
 #include <graphene/chain/evaluator.hpp>
 
+#include <graphene/chain/protocol/contract_receipt.hpp>  //liruigang20180913 contract
+
 #include <fc/smart_ref_impl.hpp>
 
 namespace graphene { namespace chain {
@@ -378,6 +380,17 @@ signed_block database::_generate_block(
       {
          auto temp_session = _undo_db.start_undo_session();
          processed_transaction ptx = _apply_transaction( tx );
+           // check block cpu limit  //liruigang20180913 contract
+           for (const auto op_result : ptx.operation_results) {
+               if (op_result.which() == operation_result::tag<contract_receipt>::value) {
+                   new_block_cpu += op_result.get<contract_receipt>().billed_cpu_time_us;
+               }
+           }
+           if (new_block_cpu >= block_cpu_limit) {
+               wlog("posponed due to block cpu limit");
+               postponed_tx_count++;
+               continue;
+           }
          temp_session.merge();
 
          // We have to recompute pack_size(ptx) because it may be different
@@ -526,6 +539,17 @@ void database::_apply_block( const signed_block& next_block )
       ++_current_trx_in_block;
    }
 
+   // check block cpu limit  //liruigang20180913 contract
+   uint64_t block_cpu_time_us = 0;
+   for (const auto &trx : next_block.transactions) {
+       for (const auto op_result : trx.operation_results) {
+           if (op_result.which() == operation_result::tag<contract_receipt>::value) {
+               block_cpu_time_us += op_result.get<contract_receipt>().billed_cpu_time_us;
+           }
+       }
+   }
+   FC_ASSERT(block_cpu_time_us <= get_cpu_limit().block_cpu_limit, "block cpu time exceed global block limit");
+
    update_global_dynamic_data(next_block);
    update_signing_witness(signing_witness, next_block);
    update_last_irreversible_block();
@@ -631,7 +655,19 @@ processed_transaction database::_apply_transaction(const signed_transaction& trx
    _current_op_in_trx = 0;
    for( const auto& op : ptrx.operations )
    {
-      eval_state.operation_results.emplace_back(apply_operation(eval_state, op));
+   	   //liruigang20180913 contract
+       uint32_t billed_cpu_time_us = 0;
+       if (i < operation_results.size()) {
+           const auto &op_result = operation_results.at(i);
+           // get billed_cpu_time_us
+           if (op_result.which() == operation_result::tag<contract_receipt>::value) {
+               billed_cpu_time_us = op_result.get<contract_receipt>().billed_cpu_time_us;
+               dlog("billed_cpu_time_us ${b}", ("b", billed_cpu_time_us));
+           }
+       }
+      //liruigang20180913 contract
+      eval_state.operation_results.emplace_back(apply_operation(eval_state, op, billed_cpu_time_us));
+      //eval_state.operation_results.emplace_back(apply_operation(eval_state, op));
       ++_current_op_in_trx;
    }
    ptrx.operation_results = std::move(eval_state.operation_results);
