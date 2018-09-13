@@ -438,11 +438,16 @@ namespace graphene { namespace chain {
        public:
          // these were formerly private, but they have a fairly well-defined API, so let's make them public
          void                  apply_block( const signed_block& next_block, uint32_t skip = skip_nothing );
-         processed_transaction apply_transaction( const signed_transaction& trx, uint32_t skip = skip_nothing );
-         operation_result      apply_operation( transaction_evaluation_state& eval_state, const operation& op );
+		 //liruigang20180913 contract
+         //processed_transaction apply_transaction( const signed_transaction& trx, uint32_t skip = skip_nothing );
+         processed_transaction apply_transaction(const signed_transaction &trx, uint32_t skip = skip_nothing, const vector<operation_result> &operation_results = {});
+         operation_result      apply_operation(transaction_evaluation_state &eval_state, const operation &op, uint32_t billed_cpu_time_us = 0);
+         //operation_result      apply_operation( transaction_evaluation_state& eval_state, const operation& op );
       private:
          void                  _apply_block( const signed_block& next_block );
-         processed_transaction _apply_transaction( const signed_transaction& trx );
+		 //liruigang20180913 contract
+         processed_transaction _apply_transaction(const signed_transaction &trx, const vector<operation_result> &operation_results = {});
+         //processed_transaction _apply_transaction( const signed_transaction& trx );
          void                  _cancel_bids_and_revive_mpa( const asset_object& bitasset, const asset_bitasset_data_object& bad );
 
          ///Steps involved in applying a new block

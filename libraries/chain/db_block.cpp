@@ -541,7 +541,9 @@ void database::_apply_block( const signed_block& next_block )
        * for transactions when validating broadcast transactions or
        * when building a block.
        */
-      apply_transaction( trx, skip );
+	  //liruigang20180913 contract
+      apply_transaction(trx, skip, trx.operation_results);
+      //apply_transaction( trx, skip );
       ++_current_trx_in_block;
    }
 
@@ -588,8 +590,18 @@ void database::_apply_block( const signed_block& next_block )
    notify_changed_objects();
 } FC_CAPTURE_AND_RETHROW( (next_block.block_num()) )  }
 
+///liruigang20180913 contract
+processed_transaction database::apply_transaction(const signed_transaction& trx, uint32_t skip, const vector<operation_result> &operation_results)
+{
+   processed_transaction result;
+   detail::with_skip_flags( *this, skip, [&]()
+   {
+      result = _apply_transaction(trx, operation_results);
+   });
+   return result;
+}
 
-
+/*liruigang20180913 contract
 processed_transaction database::apply_transaction(const signed_transaction& trx, uint32_t skip)
 {
    processed_transaction result;
@@ -599,8 +611,11 @@ processed_transaction database::apply_transaction(const signed_transaction& trx,
    });
    return result;
 }
+*/
 
-processed_transaction database::_apply_transaction(const signed_transaction& trx)
+//liruigang20180913 contract
+processed_transaction database::_apply_transaction(const signed_transaction& trx, const vector<operation_result> &operation_results)
+//processed_transaction database::_apply_transaction(const signed_transaction& trx)
 { try {
    uint32_t skip = get_node_properties().skip_flags;
 
