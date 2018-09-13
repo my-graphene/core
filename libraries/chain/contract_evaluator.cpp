@@ -78,7 +78,9 @@ contract_receipt contract_call_evaluator::contract_exec(database& db, const cont
             ("cu",trx_context.get_cpu_usage())("rp",fee_param.price_per_kbyte_ram)("cp",fee_param.price_per_ms_cpu));
 
     // pay fee, core_fee_paid
-    generic_evaluator::prepare_fee(op.fee_payer(), fee_from_account, op);
+	//liruigang20180913 contract
+    //generic_evaluator::prepare_fee(op.fee_payer(), fee_from_account, op);
+	generic_evaluator::prepare_fee(op.fee_payer(), fee_from_account);
     generic_evaluator::convert_fee();
     generic_evaluator::pay_fee();
 
