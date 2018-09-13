@@ -83,6 +83,8 @@
 namespace graphene { namespace chain {
 
    FC_DECLARE_EXCEPTION( chain_exception, 3000000, "blockchain exception" )
+   FC_DECLARE_DERIVED_EXCEPTION( name_type_exception,               graphene::chain::chain_type_exception, 3010001, "Invalid name" )  //liruigang 20180913 contract
+   FC_DECLARE_DERIVED_EXCEPTION( abi_type_exception,                graphene::chain::chain_type_exception, 3010007, "Invalid ABI" )   //liruigang20180913 contract
    FC_DECLARE_DERIVED_EXCEPTION( database_query_exception,          graphene::chain::chain_exception, 3010000, "database query exception" )
    FC_DECLARE_DERIVED_EXCEPTION( block_validate_exception,          graphene::chain::chain_exception, 3020000, "block validation exception" )
    FC_DECLARE_DERIVED_EXCEPTION( transaction_exception,             graphene::chain::chain_exception, 3030000, "transaction validation exception" )
@@ -107,10 +109,20 @@ namespace graphene { namespace chain {
 
    FC_DECLARE_DERIVED_EXCEPTION( pop_empty_chain,                   graphene::chain::undo_database_exception, 3070001, "there are no blocks to pop" )
 
+   //liruigang 20180913 contract
+   FC_DECLARE_DERIVED_EXCEPTION( wasm_exception,                    graphene::chain::chain_exception, 3070000, "WASM Exception" )
+   FC_DECLARE_DERIVED_EXCEPTION( page_memory_error,                 graphene::chain::wasm_exception, 3070001, "error in WASM page memory" )
+   FC_DECLARE_DERIVED_EXCEPTION( wasm_execution_error,              graphene::chain::wasm_exception, 3070002, "Runtime Error Processing WASM" )
+   FC_DECLARE_DERIVED_EXCEPTION( wasm_serialization_error,          graphene::chain::wasm_exception, 3070003, "Serialization Error Processing WASM" )
+   FC_DECLARE_DERIVED_EXCEPTION( overlapping_memory_error,          graphene::chain::wasm_exception, 3070004, "memcpy with overlapping memory" )
+   FC_DECLARE_DERIVED_EXCEPTION( abi_not_found_exception, chain_type_exception, 3010008, "No ABI found" )   //liruigang 20180913 contract
+   FC_DECLARE_DERIVED_EXCEPTION( table_not_found_exception, chain_type_exception, 3010009, "No table found" )   //liruigang 20180913 contract
+   FC_DECLARE_DERIVED_EXCEPTION( contract_not_found_exception, chain_type_exception, 3010010, "No contract found" )   //liruigang 20180913 contract
    GRAPHENE_DECLARE_OP_BASE_EXCEPTIONS( transfer );
    GRAPHENE_DECLARE_OP_EVALUATE_EXCEPTION( from_account_not_whitelisted, transfer, 1, "owner mismatch" )
    GRAPHENE_DECLARE_OP_EVALUATE_EXCEPTION( to_account_not_whitelisted, transfer, 2, "owner mismatch" )
    GRAPHENE_DECLARE_OP_EVALUATE_EXCEPTION( restricted_transfer_asset, transfer, 3, "restricted transfer asset" )
+   GRAPHENE_DECLARE_OP_EVALUATE_EXCEPTION( restricted_transfer_to_contract, transfer, 4, "restricted transfer asset to contract account" )   //liruigang 20180913 contract
 
    //GRAPHENE_DECLARE_OP_BASE_EXCEPTIONS( limit_order_create );
    //GRAPHENE_DECLARE_OP_BASE_EXCEPTIONS( limit_order_cancel );
