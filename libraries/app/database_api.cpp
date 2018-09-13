@@ -334,6 +334,11 @@ fc::variants database_api_impl::get_objects(const vector<object_id_type>& ids)co
    return result;
 }
 
+static void copy_inline_row(const key_value_object& obj, vector<char>& data) {
+   data.resize( obj.value.size() );
+   memcpy( data.data(), obj.value.data(), obj.value.size() );
+}
+
 //liruigang 20180912 contract
 fc::variants database_api::get_table_objects(uint64_t code, uint64_t scope, uint64_t table) const
 {
