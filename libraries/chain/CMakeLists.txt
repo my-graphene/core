@@ -35,6 +35,7 @@ add_library( graphene_chain
              # As database takes the longest to compile, start it first
              ${GRAPHENE_DB_FILES}
              fork_database.cpp
+             name.cpp
 
              protocol/types.cpp
              protocol/address.cpp
@@ -69,6 +70,8 @@ add_library( graphene_chain
              account_evaluator.cpp
              assert_evaluator.cpp
              witness_evaluator.cpp
+
+             contract_evaluator.cpp
              committee_member_evaluator.cpp
              asset_evaluator.cpp
              transfer_evaluator.cpp
@@ -81,6 +84,13 @@ add_library( graphene_chain
              special_authority.cpp
              buyback.cpp
 
+             wast_to_wasm.cpp
+             wasm_interface.cpp
+             wasm_validation.cpp
+             wasm_injection.cpp
+
+             webassembly/wavm.cpp
+             webassembly/binaryen.cpp
              account_object.cpp
              asset_object.cpp
              fba_object.cpp
@@ -92,15 +102,21 @@ add_library( graphene_chain
 
              is_authorized_asset.cpp
 
+             abi_serializer.cpp
              ${HEADERS}
              ${PROTOCOL_HEADERS}
              "${CMAKE_CURRENT_BINARY_DIR}/include/graphene/chain/hardfork.hpp"
            )
 
 add_dependencies( graphene_chain build_hardfork_hpp )
-target_link_libraries( graphene_chain fc graphene_db chaind jsoncpp )
+target_link_libraries( graphene_chain fc graphene_db chaind jsoncpp Logging IR WAST WASM Runtime wasm
+    asmjs passes ast emscripten-optimizer support softfloat builtins)
+
 target_include_directories( graphene_chain
-                            PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/include" "${CMAKE_CURRENT_BINARY_DIR}/include" )
+    PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/include"
+           "${CMAKE_CURRENT_SOURCE_DIR}/../wasm-jit/Include"
+           "${CMAKE_CURRENT_SOURCE_DIR}/../../externals/binaryen/src"
+           "${CMAKE_CURRENT_BINARY_DIR}/include" )
 
 if(MSVC)
   set_source_files_properties( db_init.cpp db_block.cpp database.cpp block_database.cpp PROPERTIES COMPILE_FLAGS "/bigobj" )
