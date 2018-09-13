@@ -120,6 +120,8 @@ namespace graphene { namespace chain {
    FC_DECLARE_DERIVED_EXCEPTION( wasm_execution_error,              graphene::chain::wasm_exception, 3070002, "Runtime Error Processing WASM" )
    FC_DECLARE_DERIVED_EXCEPTION( wasm_serialization_error,          graphene::chain::wasm_exception, 3070003, "Serialization Error Processing WASM" )
    FC_DECLARE_DERIVED_EXCEPTION( overlapping_memory_error,          graphene::chain::wasm_exception, 3070004, "memcpy with overlapping memory" )
+   FC_DECLARE_DERIVED_EXCEPTION( graphene_assert_message_exception, graphene::chain::action_validate_exception, 3070008, "graphene_assert_message assertion failure" )  //liruigang20180913 contract
+   FC_DECLARE_DERIVED_EXCEPTION( graphene_assert_code_exception,    graphene::chain::action_validate_exception, 3070009, "graphene_assert_code assertion failure" )  //liruigang20180913 contract
    FC_DECLARE_DERIVED_EXCEPTION( abi_not_found_exception, chain_type_exception, 3010008, "No ABI found" )   //liruigang 20180913 contract
    FC_DECLARE_DERIVED_EXCEPTION( table_not_found_exception, chain_type_exception, 3010009, "No table found" )   //liruigang 20180913 contract
    FC_DECLARE_DERIVED_EXCEPTION( contract_not_found_exception, chain_type_exception, 3010010, "No contract found" )   //liruigang 20180913 contract
