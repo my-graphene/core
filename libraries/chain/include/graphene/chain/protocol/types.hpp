@@ -89,7 +89,11 @@ namespace graphene { namespace chain {
    using bytes              = std::vector<char>;
 
    struct void_t{};
+   
+   //liruigang20180913 contract
    using action_name      = name;
+   using scope_name       = name;
+   using account_name     = uint64_t;
    using table_name       = name;
    typedef vector<std::pair<uint16_t,vector<char>>> abi_extensions_type;
    //liruigang20180913 contract
