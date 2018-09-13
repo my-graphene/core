@@ -706,7 +706,9 @@ processed_transaction database::_apply_transaction(const signed_transaction& trx
    return ptrx;
 } FC_CAPTURE_AND_RETHROW( (trx) ) }
 
-operation_result database::apply_operation(transaction_evaluation_state& eval_state, const operation& op)
+//liruigang20180913 contract
+//operation_result database::apply_operation(transaction_evaluation_state& eval_state, const operation& op)
+operation_result database::apply_operation(transaction_evaluation_state& eval_state, const operation& op, uint32_t billed_cpu_time_us)
 { try {
    int i_which = op.which();
    uint64_t u_which = uint64_t( i_which );
@@ -715,7 +717,9 @@ operation_result database::apply_operation(transaction_evaluation_state& eval_st
    unique_ptr<op_evaluator>& eval = _operation_evaluators[ u_which ];
    FC_ASSERT( eval, "No registered evaluator for operation ${op}", ("op",op) );
    auto op_id = push_applied_operation( op );
-   auto result = eval->evaluate( eval_state, op, true );
+   //liruigang20180913 contract
+   //auto result = eval->evaluate( eval_state, op, true );
+   auto result = eval->evaluate(eval_state, op, true, billed_cpu_time_us);
    set_applied_operation_result( op_id, result );
    return result;
 } FC_CAPTURE_AND_RETHROW( (op) ) }
