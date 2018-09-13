@@ -101,9 +101,10 @@ void_result contract_deploy_evaluator::do_evaluate(const contract_deploy_operati
     FC_ASSERT(op.abi.actions.size() > 0, "contract has no actions");
 
     // validate wasm code
-    if (d.head_block_time() > HARDFORK_1006_TIME) {
+	//liruigang20180913 contract
+    //if (d.head_block_time() > HARDFORK_1006_TIME) {
         wasm_interface::validate(op.code);
-    }
+    //}
 
     return void_result();
 } FC_CAPTURE_AND_RETHROW((op.name)(op.account)(op.fee)(op.vm_type)(op.vm_version)(op.abi)) }
