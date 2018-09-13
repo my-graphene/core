@@ -30,6 +30,7 @@
 #include <graphene/chain/block_database.hpp>
 #include <graphene/chain/genesis_state.hpp>
 #include <graphene/chain/evaluator.hpp>
+#include <graphene/chain/wasm_interface.hpp>  //liruigang20180913 contract
 
 #include <graphene/db/object_database.hpp>
 #include <graphene/db/object.hpp>
@@ -254,6 +255,14 @@ namespace graphene { namespace chain {
          const asset_object&                    get_core_asset()const;
          const chain_property_object&           get_chain_properties()const;
          const global_property_object&          get_global_properties()const;
+         const vm_cpu_limit_t                   get_cpu_limit() const;   //liruigang20180913 contract
+
+         //liruigang20180913 contract
+         const bool                             get_contract_log_to_console() const { return contract_log_to_console; }
+         void                                   set_contract_log_to_console(bool log_switch) { contract_log_to_console = log_switch; }
+         const bool                             get_rpc_mock_calc_fee() const { return rpc_mock_calc_fee; }
+         void                                   set_rpc_mock_calc_fee(bool mock) { rpc_mock_calc_fee = mock; }
+
          const dynamic_global_property_object&  get_dynamic_global_properties()const;
          const node_property_object&            get_node_properties()const;
          const fee_schedule&                    current_fee_schedule()const;

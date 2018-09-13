@@ -84,6 +84,7 @@ class database_api_impl : public std::enable_shared_from_this<database_api_impl>
 
       // Globals
       chain_property_object get_chain_properties()const;
+	  vm_cpu_limit_t get_cpu_limit() const;   //liruigang20180913 contract
       global_property_object get_global_properties()const;
       fc::variant_object get_config()const;
       chain_id_type get_chain_id()const;
@@ -545,6 +546,23 @@ global_property_object database_api::get_global_properties()const
 global_property_object database_api_impl::get_global_properties()const
 {
    return _db.get(global_property_id_type());
+}
+
+//liruigang20180913 contract
+vm_cpu_limit_t database_api::get_cpu_limit() const
+{
+    return my->get_cpu_limit();
+}
+
+vm_cpu_limit_t database_api_impl::get_cpu_limit() const
+{
+    const chain_parameters& params = get_global_properties().parameters;
+    for (auto& ext : params.extensions) {
+        if (ext.which() == future_extensions::tag<vm_cpu_limit_t>::value) {
+            return ext.get<vm_cpu_limit_t>();
+        }
+    }
+    return vm_cpu_limit_t();
 }
 
 fc::variant_object database_api::get_config()const
@@ -2157,8 +2175,56 @@ vector< fc::variant > database_api_impl::get_required_fees( const vector<operati
       _db.current_fee_schedule(),
 	  asset.options.core_exchange_rate,
       GET_REQUIRED_FEES_MAX_RECURSION );
-   for( operation& op : _ops )
+   //liruigang 20180913 contract
+   bool mock_calc_fee = _db.get_rpc_mock_calc_fee(); //just mock contract call operations
+   if(mock_calc_fee) {
+       const asset mock_asset{0, id};
+       fc::variant mock_fee;
+       fc::to_variant(mock_asset, mock_fee, GRAPHENE_MAX_NESTED_OBJECTS);
+
+       for( operation& op : ops )
+       {
+           if (op.which() == operation::tag<contract_call_operation>::value) {
+               result.push_back(mock_fee);
+			   continue ;
+		   }
+           result.push_back(helper.set_op_fees(op));
+       }
+
+       return result;
+   }
+
+   for( operation& op : ops )
    {
+       //liruigang20180913 contract
+       if (op.which() == operation::tag<contract_call_operation>::value) {
+
+           auto tmp_session = _db._undo_db.start_undo_session();
+           contract_call_operation &opr = op.get<contract_call_operation>();
+           transaction_context trx_context(_db, opr.fee_payer().instance, fc::microseconds(_db.get_cpu_limit().trx_cpu_limit));
+           action act{opr.contract_id, opr.method_name, opr.data};
+           apply_context ctx{_db, trx_context, act, opr.amount};
+           ctx.exec();
+           auto fee_param = contract_call_operation::fee_parameters_type();
+           const auto &p = _db.get_global_properties().parameters;
+           for (auto &param : p.current_fees->parameters) {
+               if (param.which() == operation::tag<contract_call_operation>::value) {
+                   fee_param = param.get<contract_call_operation::fee_parameters_type>();
+                   break;
+               }
+           }
+           auto ram_result = fc::uint128(ctx.get_ram_usage() * fee_param.price_per_kbyte_ram) / 1024;
+           auto cpu_result = fc::uint128(trx_context.get_cpu_usage() * fee_param.price_per_ms_cpu);
+           uint64_t basic_fee = fee_param.fee;
+           uint64_t ram_fee = ram_result.to_uint64();
+           uint64_t cpu_fee = cpu_result.to_uint64();
+           asset fee = asset(basic_fee + ram_fee + cpu_fee, asset_id_type()) * a.options.core_exchange_rate;
+
+           fc::variant r;
+           fc::to_variant(fee, r, GRAPHENE_MAX_NESTED_OBJECTS);
+           result.push_back(r);
+		   continue ;
+       }
 	 result.push_back( helper.set_op_fees( op ) );
    }
    return result;

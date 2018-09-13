@@ -363,6 +363,10 @@ signed_block database::_generate_block(
    _pending_tx_session.reset();
    _pending_tx_session = _undo_db.start_undo_session();
 
+   //liruigang20180913 contract
+   uint64_t block_cpu_limit = get_cpu_limit().block_cpu_limit;
+   uint64_t new_block_cpu = 0;
+   
    uint64_t postponed_tx_count = 0;
    // pop pending state (reset to head block state)
    for( const processed_transaction& tx : _pending_tx )
@@ -370,7 +374,9 @@ signed_block database::_generate_block(
       size_t new_total_size = total_block_size + fc::raw::pack_size( tx );
 
       // postpone transaction if it would make block too big
-      if( new_total_size >= maximum_block_size )
+	  //liruigang20180913 contract
+      if (new_total_size >= maximum_block_size || new_block_cpu >= block_cpu_limit) 
+      //if( new_total_size >= maximum_block_size )
       {
          postponed_tx_count++;
          continue;
