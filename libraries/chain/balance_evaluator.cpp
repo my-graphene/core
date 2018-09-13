@@ -75,7 +75,7 @@ void_result balance_claim_evaluator::do_evaluate(const balance_claim_operation& 
  */
 //liruigang20180913 contract
 //void_result balance_claim_evaluator::do_apply(const balance_claim_operation& op)
-void_result balance_claim_evaluator::do_apply(const balance_claim_operation& op, int32_t billed_cpu_time_us)
+void_result balance_claim_evaluator::do_apply(const balance_claim_operation& op, uint32_t billed_cpu_time_us)
 {
    database& d = db();
 
