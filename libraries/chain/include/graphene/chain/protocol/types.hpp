@@ -95,6 +95,13 @@ namespace graphene { namespace chain {
    using scope_name       = name;
    using account_name     = uint64_t;
    using table_name       = name;
+
+   using int128_t            = __int128;
+
+   using checksum256_type    = fc::sha256;
+   using checksum512_type    = fc::sha512;
+   using checksum160_type    = fc::ripemd160;
+
    typedef vector<std::pair<uint16_t,vector<char>>> abi_extensions_type;
    //liruigang20180913 contract
    // vm execution cpu limit
