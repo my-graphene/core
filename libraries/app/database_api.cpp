@@ -2181,7 +2181,6 @@ vector< fc::variant > database_api_impl::get_required_fees( const vector<operati
 	  asset.options.core_exchange_rate,
       GET_REQUIRED_FEES_MAX_RECURSION );
 	  
-   vector< operation > _ops = ops;
    //liruigang 20180913 contract
    bool mock_calc_fee = _db.get_rpc_mock_calc_fee(); //just mock contract call operations
    if(mock_calc_fee) {
