@@ -71,7 +71,9 @@ void apply_context::execute_inline(action &&a)
 
     // TODO
     // authorization
-    _inline_actions.emplace_back(fc::move(a)); //liruigang20180914 contract
+	//liruigang20180914 contract
+    //_inline_actions.emplace_back(move(a)); 
+    _inline_actions.emplace_back(fc::move(a));
 }
 
 int apply_context::db_store_i64(uint64_t scope, uint64_t table, const account_name &payer, uint64_t id, const char *buffer, size_t buffer_size)
