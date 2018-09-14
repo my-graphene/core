@@ -2228,7 +2228,7 @@ vector< fc::variant > database_api_impl::get_required_fees( const vector<operati
            uint64_t basic_fee = fee_param.fee;
            uint64_t ram_fee = ram_result.to_uint64();
            uint64_t cpu_fee = cpu_result.to_uint64();
-           asset fee = asset(basic_fee + ram_fee + cpu_fee, asset_id_type()) * a.options.core_exchange_rate;
+           asset fee = asset(basic_fee + ram_fee + cpu_fee, asset_id_type()) * asset_obj.options.core_exchange_rate;
 
            fc::variant r;
            fc::to_variant(fee, r, GRAPHENE_MAX_NESTED_OBJECTS);
@@ -2502,7 +2502,9 @@ void database_api_impl::on_applied_block()
       }
       if( market.valid() && _market_subscriptions.count(*market) )
          // FIXME this may cause fill_order_operation be pushed before order creation
-         subscribed_markets_ops[*market].emplace_back( std::move( std::make_pair( op.op, op.result ) ) );
+	     //liruigang20180914 contract
+         //subscribed_markets_ops[*market].emplace_back( std::move( std::make_pair( op.op, op.result ) ) );
+		 subscribed_markets_ops[*market].emplace_back( fc::move( std::make_pair( op.op, op.result ) ) );
    }
    /// we need to ensure the database_api is not deleted for the life of the async operation
    auto capture_this = shared_from_this();
