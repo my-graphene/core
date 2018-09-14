@@ -119,7 +119,7 @@ public:
 struct operation_printer
 {
 private:
-   ostream& out;
+   std::ostream& out; //liruigang20180914 contract
    const wallet_api_impl& wallet;
    operation_result result;
 
@@ -1034,7 +1034,9 @@ public:
 
            signed_transaction tx;
            tx.operations.push_back(op);
-           set_operation_fees(tx, _remote_db->get_global_properties().parameters.current_fees, fee_asset_obj);
+		   //liruigang20180914 contract
+           //set_operation_fees(tx, _remote_db->get_global_properties().parameters.current_fees, fee_asset_obj);
+		   set_operation_fees(tx, _remote_db->get_global_properties().parameters.current_fees);
            tx.validate();
 
            return sign_transaction(tx, broadcast);
@@ -1070,7 +1072,9 @@ public:
 
              signed_transaction tx;
              tx.operations.push_back(contract_call_op);
-             set_operation_fees(tx, _remote_db->get_global_properties().parameters.current_fees, fee_asset_obj);
+			 //liruigang20180914 contract
+             //set_operation_fees(tx, _remote_db->get_global_properties().parameters.current_fees, fee_asset_obj);
+			 set_operation_fees(tx, _remote_db->get_global_properties().parameters.current_fees);
              tx.validate();
 
              return sign_transaction(tx, broadcast);
