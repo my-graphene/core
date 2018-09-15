@@ -3572,6 +3572,7 @@ variant wallet_api::get_table_objects(string contract, string table) const
 {
     return my->get_table_objects(contract, table);
 }
+
 signed_transaction wallet_api::register_account(string name,
 												public_key_type owner_pubkey,
 												public_key_type active_pubkey,

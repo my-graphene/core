@@ -46,7 +46,7 @@
 #include <deque>
 #include <cstdint>
 #include <graphene/chain/protocol/address.hpp>
-#include <graphene/chain/protocol/name.hpp>
+#include <graphene/chain/protocol/name.hpp>  //liruigang20180915 contract
 #include <graphene/db/object_id.hpp>
 #include <graphene/chain/protocol/config.hpp>
 
@@ -379,7 +379,6 @@ FC_REFLECT_ENUM( graphene::chain::object_type,
                  (vesting_balance_object_type)
                  (worker_object_type)
                  (balance_object_type)
-
                  (index64_object_type)    //liruigang20180913 contract
                  (OBJECT_TYPE_COUNT)
                )
@@ -401,7 +400,6 @@ FC_REFLECT_ENUM( graphene::chain::impl_object_type,
                  (impl_special_authority_object_type)
                  (impl_buyback_object_type)
                  (impl_fba_accumulator_object_type)
-
                  (impl_collateral_bid_object_type)
                  (impl_table_id_object_type)     //liruigang20180913 contract
                  (impl_key_value_object_type)   //liruigang20180913 contract
