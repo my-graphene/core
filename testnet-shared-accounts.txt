@@ -510,8 +510,8 @@
       "is_lifetime_member": true
     },{
       "name": "dummy1",
-      "owner_key": "DBX7wXsTzBBR2QEetjrdbxSmN7Kuzey3RAzQWNNHwbPQsKYxkP6fp",
-      "active_key": "DBX7wXsTzBBR2QEetjrdbxSmN7Kuzey3RAzQWNNHwbPQsKYxkP6fp",
+      "owner_key": "DBX7wXsTzBBR2QEetjrgxcSmN7Kuzey3RAzQWNNHwbPQsKYxkP6fp",
+      "active_key": "DBX7wXsTzBBR2QEetjrgxcSmN7Kuzey3RAzQWNNHwbPQsKYxkP6fp",
       "is_lifetime_member": true
     },{
       "name": "dummy2",
