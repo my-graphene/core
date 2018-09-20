@@ -103,7 +103,7 @@ add_library( graphene_chain
              "${CMAKE_CURRENT_BINARY_DIR}/include/graphene/chain/hardfork.hpp"
            )
 
-add_dependencies( graphene_chain build_hardfork_hpp )
+add_dependencies( graphene_chain )
 target_link_libraries( graphene_chain fc graphene_db chaind jsoncpp Logging IR WAST WASM Runtime wasm
     asmjs passes ast emscripten-optimizer support softfloat builtins)
 
