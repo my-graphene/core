@@ -11,6 +11,8 @@ moc_*
 
 genesis.json
 
+rui-core.*
+
 libraries/utilities/git_revision.cpp
 
 libraries/wallet/Doxyfile
