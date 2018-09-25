@@ -1,12 +1,12 @@
 #pragma once
-#include <dbxlib/print.hpp>
-#include <dbxlib/action.hpp>
+#include <graphenelib/print.hpp>
+#include <graphenelib/action.hpp>
 
 #include <boost/fusion/adapted/std_tuple.hpp>
 #include <boost/fusion/include/std_tuple.hpp>
 
 #include <boost/mp11/tuple.hpp>
-#define N(X) ::dbxlib::string_to_name(#X)
+#define N(X) ::graphenelib::string_to_name(#X)
 namespace graphene {
    template<typename Contract, typename FirstAction>
    bool dispatch( uint64_t code, uint64_t act ) {
@@ -52,22 +52,22 @@ namespace graphene {
       return true;
    }
 
-#define DBX_API_CALL( r, OP, elem ) \
-   case dbxlib::string_to_name( BOOST_PP_STRINGIZE(elem) ): \
+#define GRAPHENE_API_CALL( r, OP, elem ) \
+   case graphenelib::string_to_name( BOOST_PP_STRINGIZE(elem) ): \
       graphene::execute_action( &thiscontract, &OP::elem ); \
       break;
 
-#define DBX_API( TYPE,  MEMBERS ) \
-   BOOST_PP_SEQ_FOR_EACH( DBX_API_CALL, TYPE, MEMBERS )
+#define GRAPHENE_API( TYPE,  MEMBERS ) \
+   BOOST_PP_SEQ_FOR_EACH( GRAPHENE_API_CALL, TYPE, MEMBERS )
 
-#define DBX_ABI( TYPE, MEMBERS ) \
+#define GRAPHENE_ABI( TYPE, MEMBERS ) \
 extern "C" { \
    void apply( uint64_t receiver, uint64_t code, uint64_t action ) { \
       auto self = receiver; \
       if (code == self) { \
          TYPE thiscontract( self ); \
          switch( action ) { \
-            DBX_API( TYPE, MEMBERS ) \
+            GRAPHENE_API( TYPE, MEMBERS ) \
          } \
       } \
    } \

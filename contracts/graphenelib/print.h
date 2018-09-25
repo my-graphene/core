@@ -1,6 +1,6 @@
 #pragma once
 
-#include <dbxlib/types.h>
+#include <graphenelib/types.h>
 
 #ifdef __cplusplus
 extern "C" {

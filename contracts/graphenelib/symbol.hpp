@@ -1,7 +1,7 @@
 #pragma once
-#include <dbxlib/serialize.hpp>
-#include <dbxlib/print.hpp>
-#include <dbxlib/system.h>
+#include <graphenelib/serialize.hpp>
+#include <graphenelib/print.hpp>
+#include <graphenelib/system.h>
 #include <tuple>
 #include <limits>
 
@@ -84,7 +84,7 @@ namespace graphene {
          }
       }
 
-      DBXLIB_SERIALIZE(contract_symbol_type, (value))
+      GRAPHENE_SERIALIZE(contract_symbol_type, (value))
    };
 
 } /// namespace graphene
