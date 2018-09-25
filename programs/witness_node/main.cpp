@@ -191,7 +191,6 @@ int main(int argc, char** argv) {
             ;
 
       bpo::variables_map options;
-	elog( "1111111111111111111111" );
       auto witness_plug = node->register_plugin<witness_plugin::witness_plugin>();
       auto debug_witness_plug = node->register_plugin<debug_witness_plugin::debug_witness_plugin>();
       auto history_plug = node->register_plugin<account_history::account_history_plugin>();
@@ -216,7 +215,7 @@ int main(int argc, char** argv) {
         return 1;
       }
 
-	  elog( "1111111111111111111111" );
+	  elog( "222222222222222222222222222" );
 	  if( options.count("help") )
       {
          std::cout << app_options << "\n";
@@ -233,7 +232,8 @@ int main(int argc, char** argv) {
          return 0;
       }
 
-      fc::path data_dir;
+	  elog( "333333333333333333" );
+	  fc::path data_dir;
       if( options.count("data-dir") )
       {
          data_dir = options["data-dir"].as<boost::filesystem::path>();
@@ -241,19 +241,24 @@ int main(int argc, char** argv) {
             data_dir = fc::current_path() / data_dir;
       }
 
-      fc::path config_ini_path = data_dir / "config.ini";
+	  elog( "44444444444444444" );
+	  fc::path config_ini_path = data_dir / "config.ini";
       if( !fc::exists(config_ini_path) )
          create_new_config_file( config_ini_path, data_dir, cfg_options );
       load_config_file( config_ini_path, cfg_options, options );
 
-      bpo::notify(options);
+	  elog( "55555555555555555" );
+	  bpo::notify(options);
       node->initialize(data_dir, options);
       node->initialize_plugins( options );
 
-      node->startup();
+	  elog( "66666666666666" );
+	  node->startup();
       node->startup_plugins();
+	  elog( "77777777777777777" );
 
       fc::promise<int>::ptr exit_promise = new fc::promise<int>("UNIX Signal Handler");
+	  elog( "888888888888" );
 
       fc::set_signal_handler([&exit_promise](int signal) {
          elog( "Caught SIGINT attempting to exit cleanly" );
