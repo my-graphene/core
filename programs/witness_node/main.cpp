@@ -243,19 +243,19 @@ int main(int argc, char** argv) {
 
 	  elog( "44444444444444444" );
 	  fc::path config_ini_path = data_dir / "config.ini";
-      if( !fc::exists(config_ini_path) )
-         create_new_config_file( config_ini_path, data_dir, cfg_options );
-      load_config_file( config_ini_path, cfg_options, options );
-
 	  elog( "55555555555555555" );
+	  if( !fc::exists(config_ini_path) )
+         create_new_config_file( config_ini_path, data_dir, cfg_options );
+	  elog( "66666666666666" );
+	  load_config_file( config_ini_path, cfg_options, options );
+	  elog( "77777777777777777" );
+
 	  bpo::notify(options);
       node->initialize(data_dir, options);
       node->initialize_plugins( options );
 
-	  elog( "66666666666666" );
 	  node->startup();
       node->startup_plugins();
-	  elog( "77777777777777777" );
 
       fc::promise<int>::ptr exit_promise = new fc::promise<int>("UNIX Signal Handler");
 	  elog( "888888888888" );
