@@ -178,6 +178,7 @@ static void create_new_config_file( const fc::path& config_ini_path, const fc::p
 }
 
 int main(int argc, char** argv) {
+	elog( "1111111111111111111111" );
    app::application* node = new app::application();
    fc::oexception unhandled_exception;
    try {
@@ -190,7 +191,7 @@ int main(int argc, char** argv) {
             ;
 
       bpo::variables_map options;
-
+	elog( "1111111111111111111111" );
       auto witness_plug = node->register_plugin<witness_plugin::witness_plugin>();
       auto debug_witness_plug = node->register_plugin<debug_witness_plugin::debug_witness_plugin>();
       auto history_plug = node->register_plugin<account_history::account_history_plugin>();
@@ -215,7 +216,8 @@ int main(int argc, char** argv) {
         return 1;
       }
 
-      if( options.count("help") )
+	  elog( "1111111111111111111111" );
+	  if( options.count("help") )
       {
          std::cout << app_options << "\n";
          return 0;
