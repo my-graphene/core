@@ -245,7 +245,11 @@ int main(int argc, char** argv) {
 	  fc::path config_ini_path = data_dir / "config.ini";
 	  elog( "55555555555555555" );
 	  if( !fc::exists(config_ini_path) )
-         create_new_config_file( config_ini_path, data_dir, cfg_options );
+	  {
+		  elog( "aaaaaaaaaaaaa" );
+		 create_new_config_file( config_ini_path, data_dir, cfg_options );
+		 elog( "bbbbbbbbbb" );
+	  }
 	  elog( "66666666666666" );
 	  load_config_file( config_ini_path, cfg_options, options );
 	  elog( "77777777777777777" );
