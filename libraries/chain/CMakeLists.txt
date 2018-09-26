@@ -100,7 +100,7 @@ add_library( graphene_chain
              abi_serializer.cpp
              ${HEADERS}
              ${PROTOCOL_HEADERS}
-             "${CMAKE_CURRENT_BINARY_DIR}/include/graphene/chain/hardfork.hpp"
+             ##"${CMAKE_CURRENT_BINARY_DIR}/include/graphene/chain/hardfork.hpp"
            )
 
 target_link_libraries( graphene_chain chaind fc graphene_db Logging IR WAST WASM Runtime wasm
