@@ -95,8 +95,11 @@ class deduplicator
 static void load_config_file( const fc::path& config_ini_path, const bpo::options_description& cfg_options,
                               bpo::variables_map& options )
 {
+	ilog("1111111111 ${path}", ("path", config_ini_path));
+
    deduplicator dedup;
    bpo::options_description unique_options("Graphene Witness Node");
+   ilog("2222222222222 ${path}", ("path", config_ini_path));
    for( const boost::shared_ptr<bpo::option_description> opt : cfg_options.options() )
    {
       const boost::shared_ptr<bpo::option_description> od = dedup.next(opt);
@@ -104,16 +107,20 @@ static void load_config_file( const fc::path& config_ini_path, const bpo::option
       unique_options.add( od );
    }
 
+   ilog("333333333333 ${path}", ("path", config_ini_path));
    // get the basic options
    bpo::store(bpo::parse_config_file<char>(config_ini_path.preferred_string().c_str(),
               unique_options, true), options);
 
+   ilog("44444444444 ${path}", ("path", config_ini_path));
    // try to get logging options from the config file.
    try
    {
-      fc::optional<fc::logging_config> logging_config = load_logging_config_from_ini_file(config_ini_path);
+	   ilog("55555555555 ${path}", ("path", config_ini_path));
+	  fc::optional<fc::logging_config> logging_config = load_logging_config_from_ini_file(config_ini_path);
       if (logging_config)
          fc::configure_logging(*logging_config);
+	  ilog("6666666 ${path}", ("path", config_ini_path));
    }
    catch (const fc::exception&)
    {
@@ -243,11 +250,10 @@ int main(int argc, char** argv) {
 
 	  elog( "44444444444444444" );
 	  fc::path config_ini_path = data_dir / "config.ini";
-	  ilog("Writing new config file at ${path}", ("path", config_ini_path));
 	  elog( "55555555555555555" );
 	  if( !fc::exists(config_ini_path) )
 	  {
-		  elog( "aaaaaaaaaaaaa" );
+		 elog( "aaaaaaaaaaaaa" );
 		 create_new_config_file( config_ini_path, data_dir, cfg_options );
 		 elog( "bbbbbbbbbb" );
 	  }
