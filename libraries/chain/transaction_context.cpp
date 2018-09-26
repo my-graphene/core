@@ -46,12 +46,13 @@ namespace graphene { namespace chain {
 	   elog( "4444444444 (_deadline=${d})", ("d", _deadline) );
 	   elog( "55555555 (now-_deadline=${i})", ("i", now - _deadline) );
 	   elog( "55555555 (transaction_cpu_usage_us=${i})", ("i", transaction_cpu_usage_us) );
-
+/* liruigang ====================
        if (BOOST_UNLIKELY(now > _deadline)) {
            GRAPHENE_THROW(tx_cpu_usage_exceeded,
                           "transaction was executing for too long",
                           ("now", now)("deadline", _deadline)("start", start)("billing_timer", now - start));
        }
+*/
    }
 
    void transaction_context::dispatch_action(const action &a, uint64_t receiver)
