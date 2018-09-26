@@ -91,8 +91,8 @@ namespace graphene { namespace chain {
       uint16_t        referrer_percent = 0;
 
       //liruigang20180925 contract
-      //string      name;
-      fc::string      name;
+	  string      name;
+	  //fc::string      name;
       authority       owner;
       authority       active;
 
