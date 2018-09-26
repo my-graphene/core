@@ -243,6 +243,7 @@ int main(int argc, char** argv) {
 
 	  elog( "44444444444444444" );
 	  fc::path config_ini_path = data_dir / "config.ini";
+	  ilog("Writing new config file at ${path}", ("path", config_ini_path));
 	  elog( "55555555555555555" );
 	  if( !fc::exists(config_ini_path) )
 	  {
