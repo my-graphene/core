@@ -40,6 +40,9 @@ namespace graphene { namespace chain {
 
        auto now = fc::time_point::now();
        transaction_cpu_usage_us = (now - start).count();//TODO
+	   elog( "11111111111111 (now=${n})", ("n", now()) );
+	   elog( "2222222222 (_deadline=${d})", ("n", _deadline()) );
+
        if (BOOST_UNLIKELY(now > _deadline)) {
            GRAPHENE_THROW(tx_cpu_usage_exceeded,
                           "transaction was executing for too long",
