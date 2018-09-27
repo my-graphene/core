@@ -48,14 +48,11 @@ namespace graphene { namespace chain {
 	   dlog("_deadline ${a}, ${b}", ("a", _deadline.time_since_epoch().count())("b", _deadline));
 	   dlog("now-_deadline ${a}", ("a", (now-_deadline).count()));
 
-
-/* liruigang ====================
        if (BOOST_UNLIKELY(now > _deadline)) {
            GRAPHENE_THROW(tx_cpu_usage_exceeded,
                           "transaction was executing for too long",
                           ("now", now)("deadline", _deadline)("start", start)("billing_timer", now - start));
        }
-*/
    }
 
    void transaction_context::dispatch_action(const action &a, uint64_t receiver)
