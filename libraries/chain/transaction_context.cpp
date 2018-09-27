@@ -39,13 +39,16 @@ namespace graphene { namespace chain {
        }
 
        auto now = fc::time_point::now();
-       transaction_cpu_usage_us = (now - start).count();//TODO
-	   elog( "11111111111111 (now=${n})", ("n", now) );
-	   elog( "2222222222 (start=${s})", ("s", start) );
-	   elog( "3333333 (now-start=${i})", ("i", now - start) );
-	   elog( "4444444444 (_deadline=${d})", ("d", _deadline) );
-	   elog( "55555555 (now-_deadline=${i})", ("i", now - _deadline) );
-	   elog( "55555555 (transaction_cpu_usage_us=${i})", ("i", transaction_cpu_usage_us) );
+	   transaction_cpu_usage_us = (now - start).count();//TODO
+
+	   dlog("now ${a}, ${b}", ("a", now.count)("b", now));
+	   dlog("start ${a}, ${b}", ("a", start.count)("b", start));
+	   dlog("now-start ${a}", ("a", (now-start).count));
+
+	   dlog("_deadline ${a}, ${b}", ("a", _deadline.count)("b", _deadline));
+	   dlog("now-_deadline ${a}", ("a", (now-_deadline).count));
+
+
 /* liruigang ====================
        if (BOOST_UNLIKELY(now > _deadline)) {
            GRAPHENE_THROW(tx_cpu_usage_exceeded,
