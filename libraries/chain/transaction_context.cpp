@@ -41,12 +41,12 @@ namespace graphene { namespace chain {
        auto now = fc::time_point::now();
 	   transaction_cpu_usage_us = (now - start).count();//TODO
 
-	   dlog("now ${a}, ${b}", ("a", now.count)("b", now));
-	   dlog("start ${a}, ${b}", ("a", start.count)("b", start));
-	   dlog("now-start ${a}", ("a", (now-start).count));
+	   dlog("now ${a}, ${b}", ("a", now.count())("b", now));
+	   dlog("start ${a}, ${b}", ("a", start.count())("b", start));
+	   dlog("now-start ${a}", ("a", (now-start).count()));
 
-	   dlog("_deadline ${a}, ${b}", ("a", _deadline.count)("b", _deadline));
-	   dlog("now-_deadline ${a}", ("a", (now-_deadline).count));
+	   dlog("_deadline ${a}, ${b}", ("a", _deadline.count())("b", _deadline));
+	   dlog("now-_deadline ${a}", ("a", (now-_deadline).count()));
 
 
 /* liruigang ====================
