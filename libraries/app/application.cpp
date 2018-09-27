@@ -381,6 +381,10 @@ void application_impl::startup()
    }
    _chain_db->add_checkpoints( loaded_checkpoints );
 
+   //liruigang20180927 contract
+   if (_options->count("max-transaction-time")) {
+       _chain_db->set_max_trx_cpu_time(_options->at("max-transaction-time").as<int32_t>());
+   }
    if( _options->count("replay-blockchain") )
       _chain_db->wipe( _data_dir / "blockchain", false );
 
