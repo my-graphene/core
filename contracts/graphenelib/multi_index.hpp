@@ -13,12 +13,12 @@
 
 #include <boost/multi_index/mem_fun.hpp>
 
-#include <dbxlib/action.h>
-#include <dbxlib/types.hpp>
-#include <dbxlib/serialize.hpp>
-#include <dbxlib/datastream.hpp>
-#include <dbxlib/db.h>
-#include <dbxlib/fixed_key.hpp>
+#include <graphenelib/action.h>
+#include <graphenelib/types.hpp>
+#include <graphenelib/serialize.hpp>
+#include <graphenelib/datastream.hpp>
+#include <graphenelib/db.h>
+#include <graphenelib/fixed_key.hpp>
 
 namespace graphene {
 
@@ -96,21 +96,6 @@ namespace _multi_index_detail {
 
    WRAP_SECONDARY_SIMPLE_TYPE(idx64,  uint64_t)
    MAKE_TRAITS_FOR_ARITHMETIC_SECONDARY_KEY(uint64_t)
-
-   WRAP_SECONDARY_SIMPLE_TYPE(idx128, uint128_t)
-   MAKE_TRAITS_FOR_ARITHMETIC_SECONDARY_KEY(uint128_t)
-
-   WRAP_SECONDARY_SIMPLE_TYPE(idx_double, double)
-   MAKE_TRAITS_FOR_ARITHMETIC_SECONDARY_KEY(double)
-
-   WRAP_SECONDARY_SIMPLE_TYPE(idx_long_double, long double)
-   MAKE_TRAITS_FOR_ARITHMETIC_SECONDARY_KEY(long double)
-
-   WRAP_SECONDARY_ARRAY_TYPE(idx256, key256)
-   template<>
-   struct secondary_key_traits<key256> {
-      static constexpr key256 lowest() { return key256(); }
-   };
 
 }
 
@@ -220,7 +205,7 @@ class multi_index
                   const_iterator& operator++() {
                      using namespace _multi_index_detail;
 
-                     dbx_assert( _item != nullptr, "cannot increment end iterator" );
+                     graphene_assert( _item != nullptr, "cannot increment end iterator" );
 
                      if( _item->__iters[Number] == -1 ) {
                         secondary_key_type temp_secondary_key;
@@ -252,9 +237,9 @@ class multi_index
 
                      if( !_item ) {
                         auto ei = secondary_index_db_functions<secondary_key_type>::db_idx_end(_idx->get_code(), _idx->get_scope(), _idx->name());
-                        dbx_assert( ei != -1, "cannot decrement end iterator when the index is empty" );
+                        graphene_assert( ei != -1, "cannot decrement end iterator when the index is empty" );
                         prev_itr = secondary_index_db_functions<secondary_key_type>::db_idx_previous( ei , &prev_pk );
-                        dbx_assert( prev_itr >= 0, "cannot decrement end iterator when the index is empty" );
+                        graphene_assert( prev_itr >= 0, "cannot decrement end iterator when the index is empty" );
                      } else {
                         if( _item->__iters[Number] == -1 ) {
                            secondary_key_type temp_secondary_key;
@@ -263,7 +248,7 @@ class multi_index
                            mi.__iters[Number] = idxitr;
                         }
                         prev_itr = secondary_index_db_functions<secondary_key_type>::db_idx_previous( _item->__iters[Number], &prev_pk );
-                        dbx_assert( prev_itr >= 0, "cannot decrement iterator at beginning of index" );
+                        graphene_assert( prev_itr >= 0, "cannot decrement iterator at beginning of index" );
                      }
 
                      const T& obj = *_idx->_multidx->find( prev_pk );
@@ -322,7 +307,7 @@ class multi_index
             // Gets the object with the smallest primary key in the case where the secondary key is not unique.
             const T& get( const secondary_key_type& secondary, const char* error_msg = "unable to find secondary key" )const {
                auto result = find( secondary );
-               dbx_assert( result != cend(), "unable to find secondary key" );
+               graphene_assert( result != cend(), "unable to find secondary key" );
                return *result;
             }
 
@@ -366,7 +351,7 @@ class multi_index
                using namespace _multi_index_detail;
 
                const auto& objitem = static_cast<const item&>(obj);
-               dbx_assert( objitem.__idx == _multidx, "object passed to iterator_to is not in multi_index" );
+               graphene_assert( objitem.__idx == _multidx, "object passed to iterator_to is not in multi_index" );
 
                if( objitem.__iters[Number] == -1 ) {
                   secondary_key_type temp_secondary_key;
@@ -380,13 +365,13 @@ class multi_index
 
             template<typename Lambda>
             void modify( const_iterator itr, uint64_t payer, Lambda&& updater ) {
-               dbx_assert( itr != cend(), "cannot pass end iterator to modify" );
+               graphene_assert( itr != cend(), "cannot pass end iterator to modify" );
 
                _multidx->modify( *itr, payer, std::forward<Lambda&&>(updater) );
             }
 
             const_iterator erase( const_iterator itr ) {
-               dbx_assert( itr != cend(), "cannot pass end iterator to erase" );
+               graphene_assert( itr != cend(), "cannot pass end iterator to erase" );
 
                const auto& obj = *itr;
                ++itr;
@@ -449,7 +434,7 @@ class multi_index
             return *itr2->_item;
 
          auto size = db_get_i64( itr, nullptr, 0 );
-         dbx_assert( size >= 0, "error reading iterator" );
+         graphene_assert( size >= 0, "error reading iterator" );
 
          //using malloc/free here potentially is not exception-safe, although WASM doesn't support exceptions
          void* buffer = max_stack_buffer_size < size_t(size) ? malloc(size_t(size)) : alloca(size_t(size));
@@ -516,7 +501,7 @@ class multi_index
          }
 
          const_iterator& operator++() {
-            dbx_assert( _item != nullptr, "cannot increment end iterator" );
+            graphene_assert( _item != nullptr, "cannot increment end iterator" );
 
             uint64_t next_pk;
             auto next_itr = db_next_i64( _item->__primary_itr, &next_pk );
@@ -532,12 +517,12 @@ class multi_index
 
             if( !_item ) {
                auto ei = db_end_i64(_multidx->get_code(), _multidx->get_scope(), TableName);
-               dbx_assert( ei != -1, "cannot decrement end iterator when the table is empty" );
+               graphene_assert( ei != -1, "cannot decrement end iterator when the table is empty" );
                prev_itr = db_previous_i64( ei , &prev_pk );
-               dbx_assert( prev_itr >= 0, "cannot decrement end iterator when the table is empty" );
+               graphene_assert( prev_itr >= 0, "cannot decrement end iterator when the table is empty" );
             } else {
                prev_itr = db_previous_i64( _item->__primary_itr, &prev_pk );
-               dbx_assert( prev_itr >= 0, "cannot decrement iterator at beginning of table" );
+               graphene_assert( prev_itr >= 0, "cannot decrement iterator at beginning of table" );
             }
 
             _item = &_multidx->load_object_by_primary_iterator( prev_itr );
@@ -603,7 +588,7 @@ class multi_index
             }
          }
 
-         dbx_assert( _next_primary_key < no_available_primary_key, "next primary key in table is at autoincrement limit");
+         graphene_assert( _next_primary_key < no_available_primary_key, "next primary key in table is at autoincrement limit");
          return _next_primary_key;
       }
 
@@ -635,7 +620,7 @@ class multi_index
 
       const_iterator iterator_to( const T& obj )const {
          const auto& objitem = static_cast<const item&>(obj);
-         dbx_assert( objitem.__idx == this, "object passed to iterator_to is not in multi_index" );
+         graphene_assert( objitem.__idx == this, "object passed to iterator_to is not in multi_index" );
          return {this, &objitem};
       }
 
@@ -643,7 +628,7 @@ class multi_index
       const_iterator emplace( uint64_t payer, Lambda&& constructor ) {
          using namespace _multi_index_detail;
 
-         dbx_assert( _code == current_receiver(), "cannot create objects in table of another contract" ); // Quick fix for mutating db using multi_index that shouldn't allow mutation. Real fix can come in RC2.
+         graphene_assert( _code == current_receiver(), "cannot create objects in table of another contract" ); // Quick fix for mutating db using multi_index that shouldn't allow mutation. Real fix can come in RC2.
 
          auto itm = std::make_unique<item>( this, [&]( auto& i ){
             T& obj = static_cast<T&>(i);
@@ -686,7 +671,7 @@ class multi_index
 
       template<typename Lambda>
       void modify( const_iterator itr, uint64_t payer, Lambda&& updater ) {
-         dbx_assert( itr != end(), "cannot pass end iterator to modify" );
+         graphene_assert( itr != end(), "cannot pass end iterator to modify" );
 
          modify( *itr, payer, std::forward<Lambda&&>(updater) );
       }
@@ -696,9 +681,9 @@ class multi_index
          using namespace _multi_index_detail;
 
          const auto& objitem = static_cast<const item&>(obj);
-         dbx_assert( objitem.__idx == this, "object passed to modify is not in multi_index" );
+         graphene_assert( objitem.__idx == this, "object passed to modify is not in multi_index" );
          auto& mutableitem = const_cast<item&>(objitem);
-         dbx_assert( _code == current_receiver(), "cannot modify objects in table of another contract" ); // Quick fix for mutating db using multi_index that shouldn't allow mutation. Real fix can come in RC2.
+         graphene_assert( _code == current_receiver(), "cannot modify objects in table of another contract" ); // Quick fix for mutating db using multi_index that shouldn't allow mutation. Real fix can come in RC2.
 
          auto secondary_keys = hana::transform( _indices, [&]( auto&& idx ) {
             typedef typename decltype(+hana::at_c<0>(idx))::type index_type;
@@ -711,7 +696,7 @@ class multi_index
          auto& mutableobj = const_cast<T&>(obj); // Do not forget the auto& otherwise it would make a copy and thus not update at all.
          updater( mutableobj );
 
-         dbx_assert( pk == obj.primary_key(), "updater cannot change primary key when modifying an object" );
+         graphene_assert( pk == obj.primary_key(), "updater cannot change primary key when modifying an object" );
 
          size_t size = pack_size( obj );
          //using malloc/free here potentially is not exception-safe, although WASM doesn't support exceptions
@@ -749,7 +734,7 @@ class multi_index
 
    const T& get( uint64_t primary, const char* error_msg = "unable to find key" )const {
          auto result = find( primary );
-         dbx_assert( result != cend(), error_msg );
+         graphene_assert( result != cend(), error_msg );
          return *result;
       }
 
@@ -768,7 +753,7 @@ class multi_index
       }
 
       const_iterator erase( const_iterator itr ) {
-         dbx_assert( itr != end(), "cannot pass end iterator to erase" );
+         graphene_assert( itr != end(), "cannot pass end iterator to erase" );
 
          const auto& obj = *itr;
          ++itr;
@@ -782,15 +767,15 @@ class multi_index
          using namespace _multi_index_detail;
 
          const auto& objitem = static_cast<const item&>(obj);
-         dbx_assert( objitem.__idx == this, "object passed to erase is not in multi_index" );
-         dbx_assert( _code == current_receiver(), "cannot erase objects in table of another contract" ); // Quick fix for mutating db using multi_index that shouldn't allow mutation. Real fix can come in RC2.
+         graphene_assert( objitem.__idx == this, "object passed to erase is not in multi_index" );
+         graphene_assert( _code == current_receiver(), "cannot erase objects in table of another contract" ); // Quick fix for mutating db using multi_index that shouldn't allow mutation. Real fix can come in RC2.
 
          auto pk = objitem.primary_key();
          auto itr2 = std::find_if(_items_vector.rbegin(), _items_vector.rend(), [&](const item_ptr& ptr) {
             return ptr._item->primary_key() == pk;
          });
 
-         dbx_assert( itr2 != _items_vector.rend(), "attempt to remove object that was not in multi_index" );
+         graphene_assert( itr2 != _items_vector.rend(), "attempt to remove object that was not in multi_index" );
 
          _items_vector.erase(--(itr2.base()));
 

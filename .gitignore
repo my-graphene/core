@@ -10,7 +10,8 @@ moc_*
 *.moc
 
 genesis.json
-hardfork.hpp
+
+rui-core.*
 
 libraries/utilities/git_revision.cpp
 

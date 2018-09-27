@@ -1,7 +1,7 @@
 #pragma once
 
-#include <dbxlib/memory.h>
-#include <dbxlib/print.hpp>
+#include <graphenelib/memory.h>
+#include <graphenelib/print.hpp>
 
 void* sbrk(size_t num_bytes);
 
