@@ -17,7 +17,7 @@ class contractb : public contract
     /// @abi action
     void hi()
     {
-        printf("hi");
+		print("hi");
     }
 };
 
