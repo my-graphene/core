@@ -52,14 +52,12 @@ namespace graphene {
 
       GRAPHENE_SERIALIZE(action, (account)(name)(data))
 
-      /*
+	  //liruigang20181008 contract
       void send() const
       {
           auto serialize = pack(*this);
           ::send_inline(serialize.data(), serialize.size());
-      }
-      */
-
+	  }
    };
 
 } // namespace graphene

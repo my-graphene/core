@@ -20,7 +20,7 @@ class contracta : public contract
         print("hi contract:", act_id);
         std::string s = "abc";
         action a(act_id, N(hi), bytes(s.begin(), s.end()));
-		//a.send();
+		a.send();
     }
 };
 
