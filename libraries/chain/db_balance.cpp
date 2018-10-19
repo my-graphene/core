@@ -29,6 +29,7 @@
 #include <graphene/chain/vesting_balance_object.hpp>
 #include <graphene/chain/witness_object.hpp>
 
+#include <iostream>
 namespace graphene { namespace chain {
 
 asset database::get_balance(account_id_type owner, asset_id_type asset_id) const
