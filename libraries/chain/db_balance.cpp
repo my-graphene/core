@@ -114,22 +114,24 @@ optional< vesting_balance_id_type > database::deposit_lazy_vesting(
 		 {
 			 std::cout << "-------" << "77777777777" << std::endl ;
 			_vbo.deposit(now, amount);
+			_vbo.policy.vesting_seconds = req_vesting_seconds ;
 		 }
          else
 		 {
 			 std::cout << "-------" << "88888888888" << std::endl ;
 			_vbo.deposit_vested(now, amount);
+			_vbo.policy.vesting_seconds = req_vesting_seconds ;
 		 }
       } );
       return optional< vesting_balance_id_type >();
    }
-   std::cout << "-------" << "7777777777777" << std::endl ;
+   std::cout << "-------" << "99999999999999" << std::endl ;
 
    const vesting_balance_object& vbo = create< vesting_balance_object >( [&]( vesting_balance_object& _vbo )
    {
       _vbo.owner = req_owner;
       _vbo.balance = amount;
-		   std::cout << "-------" << "88888888888888888" << std::endl ;
+		   std::cout << "-------" << "aaaaaaaaaaaaaaaa" << std::endl ;
 
       cdd_vesting_policy policy;
       policy.vesting_seconds = req_vesting_seconds;
