@@ -87,26 +87,26 @@ optional< vesting_balance_id_type > database::deposit_lazy_vesting(
    if( amount == 0 )
       return optional< vesting_balance_id_type >();
 
-   std::cout << "-------" << "1111111111111111111111" std::endl ;
+   std::cout << "-------" << "1111111111111111111111" << std::endl ;
 
    fc::time_point_sec now = head_block_time();
 
    while( true )
    {
-	   std::cout << "-------" << "2222222222" std::endl ;
+	   std::cout << "-------" << "2222222222" << std::endl ;
 	  if( !ovbid.valid() )
          break;
       const vesting_balance_object& vbo = (*ovbid)(*this);
-	  std::cout << "-------" << "3333333333333" std::endl ;
+	  std::cout << "-------" << "3333333333333" << std::endl ;
 	  if( vbo.owner != req_owner )
          break;
-	  std::cout << "-------" << "4444444444444" std::endl ;
+	  std::cout << "-------" << "4444444444444" << std::endl ;
 	  if( vbo.policy.which() != vesting_policy::tag< cdd_vesting_policy >::value )
          break;
 	  std::cout << "-------" << "5555555555555" std::endl ;
 	  //if( vbo.policy.get< cdd_vesting_policy >().vesting_seconds != req_vesting_seconds )
 	  //   break;
-	  std::cout << "-------" << "66666666666666" std::endl ;
+	  std::cout << "-------" << "66666666666666" << std::endl ;
 	  modify( vbo, [&]( vesting_balance_object& _vbo )
       {
          if( require_vesting )
@@ -116,13 +116,13 @@ optional< vesting_balance_id_type > database::deposit_lazy_vesting(
       } );
       return optional< vesting_balance_id_type >();
    }
-   std::cout << "-------" << "7777777777777" std::endl ;
+   std::cout << "-------" << "7777777777777" << std::endl ;
 
    const vesting_balance_object& vbo = create< vesting_balance_object >( [&]( vesting_balance_object& _vbo )
    {
       _vbo.owner = req_owner;
       _vbo.balance = amount;
-		   std::cout << "-------" << "88888888888888888" std::endl ;
+		   std::cout << "-------" << "88888888888888888" << std::endl ;
 
       cdd_vesting_policy policy;
       policy.vesting_seconds = req_vesting_seconds;
@@ -183,7 +183,7 @@ void database::deposit_witness_pay(const witness_object& wit, share_type amount)
 {
    if( amount == 0 )
       return;
-   std::cout << "++++++++++++" << "1111111111111111111111" std::endl ;
+   std::cout << "++++++++++++" << "1111111111111111111111" << std::endl ;
 
    optional< vesting_balance_id_type > new_vbid = deposit_lazy_vesting(
       wit.pay_vb,
@@ -192,11 +192,11 @@ void database::deposit_witness_pay(const witness_object& wit, share_type amount)
 	  //get_global_properties().parameters.witness_pay_vesting_seconds,
       wit.witness_account,
       true );
-   std::cout << "++++++++++++" << "2222222222222222" std::endl ;
+   std::cout << "++++++++++++" << "2222222222222222" << std::endl ;
 
    if( new_vbid.valid() )
    {
-	   std::cout << "++++++++++++" << "33333333333333333" std::endl ;
+	   std::cout << "++++++++++++" << "33333333333333333" << std::endl ;
 	  modify( wit, [&]( witness_object& _wit )
       {
          _wit.pay_vb = *new_vbid;
