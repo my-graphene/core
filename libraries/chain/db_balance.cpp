@@ -103,7 +103,7 @@ optional< vesting_balance_id_type > database::deposit_lazy_vesting(
 	  std::cout << "-------" << "4444444444444" << std::endl ;
 	  if( vbo.policy.which() != vesting_policy::tag< cdd_vesting_policy >::value )
          break;
-	  std::cout << "-------" << "5555555555555" std::endl ;
+	  std::cout << "-------" << "5555555555555" << std::endl ;
 	  //if( vbo.policy.get< cdd_vesting_policy >().vesting_seconds != req_vesting_seconds )
 	  //   break;
 	  std::cout << "-------" << "66666666666666" << std::endl ;
