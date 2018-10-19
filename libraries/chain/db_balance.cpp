@@ -98,8 +98,8 @@ optional< vesting_balance_id_type > database::deposit_lazy_vesting(
          break;
       if( vbo.policy.which() != vesting_policy::tag< cdd_vesting_policy >::value )
          break;
-      if( vbo.policy.get< cdd_vesting_policy >().vesting_seconds != req_vesting_seconds )
-         break;
+	  //if( vbo.policy.get< cdd_vesting_policy >().vesting_seconds != req_vesting_seconds )
+	  //   break;
       modify( vbo, [&]( vesting_balance_object& _vbo )
       {
          if( require_vesting )
@@ -148,7 +148,8 @@ void database::deposit_cashback(const account_object& acct, share_type amount, b
    optional< vesting_balance_id_type > new_vbid = deposit_lazy_vesting(
       acct.cashback_vb,
       amount,
-      get_global_properties().parameters.cashback_vesting_period_seconds,
+	  60,
+	  //get_global_properties().parameters.cashback_vesting_period_seconds,
       acct.id,
       require_vesting );
 
