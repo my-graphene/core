@@ -111,9 +111,15 @@ optional< vesting_balance_id_type > database::deposit_lazy_vesting(
 	  modify( vbo, [&]( vesting_balance_object& _vbo )
       {
          if( require_vesting )
-            _vbo.deposit(now, amount);
+		 {
+			 std::cout << "-------" << "77777777777" << std::endl ;
+			_vbo.deposit(now, amount);
+		 }
          else
-            _vbo.deposit_vested(now, amount);
+		 {
+			 std::cout << "-------" << "88888888888" << std::endl ;
+			_vbo.deposit_vested(now, amount);
+		 }
       } );
       return optional< vesting_balance_id_type >();
    }
