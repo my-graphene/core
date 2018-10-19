@@ -114,13 +114,13 @@ optional< vesting_balance_id_type > database::deposit_lazy_vesting(
 		 {
 			 std::cout << "-------" << "77777777777" << std::endl ;
 			_vbo.deposit(now, amount);
-			_vbo.policy.vesting_seconds = req_vesting_seconds ;
+			_vbo.policy.get< cdd_vesting_policy >().vesting_seconds = req_vesting_seconds ;
 		 }
          else
 		 {
 			 std::cout << "-------" << "88888888888" << std::endl ;
 			_vbo.deposit_vested(now, amount);
-			_vbo.policy.vesting_seconds = req_vesting_seconds ;
+			_vbo.policy.get< cdd_vesting_policy >().vesting_seconds = req_vesting_seconds ;
 		 }
       } );
       return optional< vesting_balance_id_type >();
