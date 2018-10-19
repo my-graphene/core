@@ -1851,6 +1851,8 @@ public:
 	  std::vector<vesting_balance_object_with_info> result;
 	  fc::time_point_sec now = _remote_db->get_dynamic_global_properties().time;
 
+	  std::cout << now << std::endl;
+
 	  if( vbid )
 	  {
 		 result.emplace_back( get_object<vesting_balance_object>(*vbid), now );
