@@ -1,7 +1,7 @@
 # 编译合约
 执行如下命令, 生成wast和wasm文件:
 ```
-dxx -o helloworld.wast helloworld.cpp
+rxx -o helloworld.wast helloworld.cpp
 ```
 
 生成abi:

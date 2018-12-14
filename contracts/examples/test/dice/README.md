@@ -80,12 +80,12 @@ call_contract nathan d11421 null reveal "{\"commitment\":\"c807cc6c0b9121f6b151f
 commitment及相应的resource生成方式如下(mac下):
 生成resource：
 ```
-➜  dbx-core git:(dev_master) openssl rand 32 -hex
+➜  rui-core git:(dev_master) openssl rand 32 -hex
 7d65a071c3f8b38f94e11be1fda97109ea41dfd305e06e677a55edd957327fab
 ```
 根据resource生成commitment：
 ```
-➜  dbx-core git:(dev_master) ✗ echo -n '7d65a071c3f8b38f94e11be1fda97109ea41dfd305e06e677a55edd957327fab' | xxd -r -p | shasum -a 256 -b
+➜  rui-core git:(dev_master) ✗ echo -n '7d65a071c3f8b38f94e11be1fda97109ea41dfd305e06e677a55edd957327fab' | xxd -r -p | shasum -a 256 -b
 24948ec739cd9963bae8805ae18a4a2f4d58689b8d48dc20f289c3ded47ef600 *-
 ```
 

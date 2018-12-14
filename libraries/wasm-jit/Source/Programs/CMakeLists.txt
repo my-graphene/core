@@ -1,7 +1,7 @@
-add_executable(dbx-wast2wasm Assemble.cpp CLI.h)
-target_link_libraries(dbx-wast2wasm Logging IR WAST WASM)
-set_target_properties(dbx-wast2wasm PROPERTIES FOLDER Programs)
-INSTALL(TARGETS dbx-wast2wasm DESTINATION ${CMAKE_INSTALL_BINDIR})
+add_executable(rui-wast2wasm Assemble.cpp CLI.h)
+target_link_libraries(rui-wast2wasm Logging IR WAST WASM)
+set_target_properties(rui-wast2wasm PROPERTIES FOLDER Programs)
+INSTALL(TARGETS rui-wast2wasm DESTINATION ${CMAKE_INSTALL_BINDIR})
 
 add_executable(Disassemble Disassemble.cpp CLI.h)
 target_link_libraries(Disassemble Logging IR WAST WASM)

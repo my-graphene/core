@@ -11,7 +11,7 @@ redpacket 合约是一个口令红包合约，提供了发行红包(issue)、打
 
 1. 生成wast:
 ```
-dxx -o contracts/examples/redpacket/redpacket.wast contracts/examples/redpacket/redpacket.cpp 
+rxx -o contracts/examples/redpacket/redpacket.wast contracts/examples/redpacket/redpacket.cpp 
 ```
 
 2. 生成abi:
