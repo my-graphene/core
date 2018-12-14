@@ -13,7 +13,7 @@
 
 using namespace graphene;
 
-static const uint64_t redpacket_asset_id = 1;//DBX
+static const uint64_t redpacket_asset_id = 1;//RUI
 
 class redpacket : public contract
 {

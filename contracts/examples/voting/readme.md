@@ -11,7 +11,7 @@ rxx -g voting.abi voting.cpp
 
 部署合约要求账户私钥已经导入钱包，并且是解锁状态
 ```
-unlocked >>> deploy_contract voting nathan 0 0 ./voting DBX true
+unlocked >>> deploy_contract voting nathan 0 0 ./voting RUI true
 ```
 其中
 ```
@@ -19,7 +19,7 @@ unlocked >>> deploy_contract voting nathan 0 0 ./voting DBX true
 // nathan为部署合约的帐户
 // 0 0 分别指定了vm类型和版本号
 // ./voting指定合约文件的路径
-// DBX表示使用DBX支付手续费
+// RUI表示使用RUI支付手续费
 // true表示执行，发起广播
 ```
 
@@ -27,16 +27,16 @@ unlocked >>> deploy_contract voting nathan 0 0 ./voting DBX true
 
 ## 投票
 ```
-call_contract nathan voting null vote "{\"id\":1, \"name\":\"user1\"}" DBX true
-call_contract nathan voting null vote "{\"id\":1, \"name\":\"user1\"}" DBX true
+call_contract nathan voting null vote "{\"id\":1, \"name\":\"user1\"}" RUI true
+call_contract nathan voting null vote "{\"id\":1, \"name\":\"user1\"}" RUI true
 
-call_contract nathan voting null vote "{\"id\":2, \"name\":\"user2\"}" DBX true
-call_contract nathan voting null vote "{\"id\":3, \"name\":\"user3\"}" DBX true
+call_contract nathan voting null vote "{\"id\":2, \"name\":\"user2\"}" RUI true
+call_contract nathan voting null vote "{\"id\":3, \"name\":\"user3\"}" RUI true
 ```
 
 ## 查看票数
 ```
-call_contract nathan voting null count "{\"id\":1}" DBX true
+call_contract nathan voting null count "{\"id\":1}" RUI true
 ```
 
 此时在witness_node运行日志看到如下内容.
@@ -48,7 +48,7 @@ id=1, name=user1, count=2
 
 ## 查看投票列表
 ```
-call_contract nathan voting null list "{}" DBX true
+call_contract nathan voting null list "{}" RUI true
 ```
 
 此时在witness_node运行日志看到如下内容.
@@ -62,7 +62,7 @@ id=3, name=user3, count=1
 
 ## 删除候选人
 ```
-call_contract nathan voting null remove "{\"id\":1}" DBX true
+call_contract nathan voting null remove "{\"id\":1}" RUI true
 ```
 此时在witness_node运行日志看到如下内容.
 ```

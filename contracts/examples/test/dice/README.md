@@ -36,7 +36,7 @@ unlocked >>> import_key nathan 5KQwrPbwdL6PhXujxW37FSSQZ1JiwsST4cqQzDeyXtP79zkvF
 
 ```
 // 使用nathan帐户，部署名为dice的合约
-unlocked >>> deploy_contract dice nathan 0 0 ./dice DBX true
+unlocked >>> deploy_contract dice nathan 0 0 ./dice RUI true
 
 ```
 其中
@@ -45,37 +45,37 @@ unlocked >>> deploy_contract dice nathan 0 0 ./dice DBX true
 // nathan为部署合约的帐户
 // 0 0 分别指定了vm类型和版本号
 // ./dice指定合约文件的路径
-// DBX表示使用DBX支付手续费
+// RUI表示使用RUI支付手续费
 // true表示执行，发起广播
 ```
 
 #### 调用合约
-调用dice合约的deposit方法,beita/nathan向合约存入100个DBX用于dice游戏：
+调用dice合约的deposit方法,beita/nathan向合约存入100个RUI用于dice游戏：
 ```
-call_contract beita dice {"amount":10000000,"asset_id":1.3.0} deposit "{}" DBX true
-call_contract nathan dice {"amount":10000000,"asset_id":1.3.0} deposit "{}" DBX true
+call_contract beita dice {"amount":10000000,"asset_id":1.3.0} deposit "{}" RUI true
+call_contract nathan dice {"amount":10000000,"asset_id":1.3.0} deposit "{}" RUI true
 ```
 其中
 ```
 // beita/nathan指定调用合约的帐户
 // dice指定要调用的合约帐户名
-// {"amount":10000000,"asset_id":1.3.0} 表示不向合约发送资产100DBX
+// {"amount":10000000,"asset_id":1.3.0} 表示不向合约发送资产100RUI
 // deposit 表示要调用的合约方法
 // "{}" 表示合约deposit的参数，参数以json格式传入
-// DBX表示使用DBX支付手续费
+// RUI表示使用RUI支付手续费
 // true表示执行，发起广播
 ```
-调用dice合约的offerbet方法,beita/nathan分别押注10DBX并指定自己的commitment，commitment的生成方式详见后面：
+调用dice合约的offerbet方法,beita/nathan分别押注10RUI并指定自己的commitment，commitment的生成方式详见后面：
 ```
-call_contract beita d11421 null offerbet "{\"bet\":{\"amount\":1000000,\"asset_id\":0},\"commitment\":\"492b184fdcb41f442d539e792600a8db67c47eb16c0265e5d1e553473f462486\"}" DBX true
+call_contract beita d11421 null offerbet "{\"bet\":{\"amount\":1000000,\"asset_id\":0},\"commitment\":\"492b184fdcb41f442d539e792600a8db67c47eb16c0265e5d1e553473f462486\"}" RUI true
 
-call_contract nathan d11421 null offerbet "{\"bet\":{\"amount\":1000000,\"asset_id\":0},\"commitment\":\"c807cc6c0b9121f6b151f39dcf5fd819e3cb9a6d18f46c7a635f1015148bcc76\"}" DBX true
+call_contract nathan d11421 null offerbet "{\"bet\":{\"amount\":1000000,\"asset_id\":0},\"commitment\":\"c807cc6c0b9121f6b151f39dcf5fd819e3cb9a6d18f46c7a635f1015148bcc76\"}" RUI true
 ```
 
 调用dice合约的reveal方法,beita/nathan分别亮牌：
 ```
-call_contract beita d11421 null reveal "{\"commitment\":\"492b184fdcb41f442d539e792600a8db67c47eb16c0265e5d1e553473f462486\",\"source\":\"a80b8a6d1bf2cf798b045366d920531b2ce5f13082c4b2b08d53cfeab5d24b7a\"}" DBX true
-call_contract nathan d11421 null reveal "{\"commitment\":\"c807cc6c0b9121f6b151f39dcf5fd819e3cb9a6d18f46c7a635f1015148bcc76\",\"source\":\"5387ec637ac4bdbcf9577451cdc61f4d11ba600ba5540a27065a15aa3f8d45d1\"}" DBX true
+call_contract beita d11421 null reveal "{\"commitment\":\"492b184fdcb41f442d539e792600a8db67c47eb16c0265e5d1e553473f462486\",\"source\":\"a80b8a6d1bf2cf798b045366d920531b2ce5f13082c4b2b08d53cfeab5d24b7a\"}" RUI true
+call_contract nathan d11421 null reveal "{\"commitment\":\"c807cc6c0b9121f6b151f39dcf5fd819e3cb9a6d18f46c7a635f1015148bcc76\",\"source\":\"5387ec637ac4bdbcf9577451cdc61f4d11ba600ba5540a27065a15aa3f8d45d1\"}" RUI true
 ```
 commitment及相应的resource生成方式如下(mac下):
 生成resource：

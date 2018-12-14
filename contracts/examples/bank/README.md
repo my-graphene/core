@@ -25,7 +25,7 @@ rxx -g contracts/examples/bank/bank.abi contracts/examples/bank/bank.cpp
 ##### 部署合约
 ```
 // 这里使用nathan帐户部署合约，部署的合约名为bank
-unlocked >>> deploy_contract bank nathan 0 0 ./contracts/examples/bank DBX true
+unlocked >>> deploy_contract bank nathan 0 0 ./contracts/examples/bank RUI true
 
 ```
 
@@ -33,14 +33,14 @@ unlocked >>> deploy_contract bank nathan 0 0 ./contracts/examples/bank DBX true
 
 1. 调用合约的deposit方法
 ```
-// 使用nathan帐户，调用bank合约，方法名为deposit,  发送资产总量为100 DBX(链上为大数，需要乘以10万)
-unlocked >>> call_contract nathan bank {"amount":10000000,"asset_id":1.3.1} deposit "{}" DBX true
+// 使用nathan帐户，调用bank合约，方法名为deposit,  发送资产总量为100 RUI(链上为大数，需要乘以10万)
+unlocked >>> call_contract nathan bank {"amount":10000000,"asset_id":1.3.1} deposit "{}" RUI true
 ```
 
 2. 查询bank合约的帐户余额
 ```
 unlocked >>> list_account_balances bank
-100 DBX
+100 RUI
 ```
 
 3. 列出合约所有的存储表
@@ -70,10 +70,10 @@ unlocked >>> get_table_objects bank account
 
 ```
 // 提现到nathan帐户
-unlocked >>> call_contract nathan bank null withdraw "{\"to_account\":\"nathan\", \"amount\":{\"asset_id\": 1, \"amount\":100000}}" DBX true
+unlocked >>> call_contract nathan bank null withdraw "{\"to_account\":\"nathan\", \"amount\":{\"asset_id\": 1, \"amount\":100000}}" RUI true
 
 // 提现到init0帐户
-unlocked >>> call_contract nathan bank null withdraw "{\"to_account\":\"init0\", \"amount\":{\"asset_id\": 1, \"amount\":100000}}" DBX true
+unlocked >>> call_contract nathan bank null withdraw "{\"to_account\":\"init0\", \"amount\":{\"asset_id\": 1, \"amount\":100000}}" RUI true
 
 ```
 
