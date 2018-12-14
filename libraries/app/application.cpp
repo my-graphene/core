@@ -165,9 +165,7 @@ void application_impl::reset_p2p_node(const fc::path& data_dir)
    else
    {
       // https://bitsharestalk.org/index.php/topic,23715.0.html
-      vector<string> seeds = {
-		  "13.230.35.24:38090",               // aws
-		  "18.182.40.191:38090"               // aws
+	  vector<string> seeds = {
 	  };
       for( const string& endpoint_string : seeds )
       {
