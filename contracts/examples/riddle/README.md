@@ -11,13 +11,13 @@ riddle合约是一个谜题合约，提供2个接口：（issue)发行谜题和(
 1. 生成wast:
 
 ```
-dxx -o contracts/examples/riddle/riddle.wast contracts/examples/riddle/riddle.cpp 
+rxx -o contracts/examples/riddle/riddle.wast contracts/examples/riddle/riddle.cpp 
 ```
 
 2. 生成abi:
 
 ```
-dxx -g contracts/examples/riddle/riddle.abi contracts/examples/riddle/riddle.cpp 
+rxx -g contracts/examples/riddle/riddle.abi contracts/examples/riddle/riddle.cpp 
 ```
 
 #### 合约部署和调用

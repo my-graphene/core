@@ -7,12 +7,12 @@ bank 合约提供了充值(deposit)和提现(withdraw)方法，可以向合约�
 
 1. 生成wast:
 ```
-dxx -o contracts/examples/bank/bank.wast contracts/examples/bank/bank.cpp 
+rxx -o contracts/examples/bank/bank.wast contracts/examples/bank/bank.cpp 
 ```
 
 2. 生成abi:
 ```
-dxx -g contracts/examples/bank/bank.abi contracts/examples/bank/bank.cpp 
+rxx -g contracts/examples/bank/bank.abi contracts/examples/bank/bank.cpp 
 ```
 
 #### 合约部署和调用

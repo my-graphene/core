@@ -2,12 +2,12 @@
 #### 编译合约
 执行如下命令, 生成wast和wasm文件:
 ```
-dxx -o dice/dice.wast dice/dice.cpp
+rxx -o dice/dice.wast dice/dice.cpp
 ```
 
 生成abi:
 ```
-dxx -g dice/dice.abi dice/dice.cpp
+rxx -g dice/dice.abi dice/dice.cpp
 ```
 
 #### 部署合约

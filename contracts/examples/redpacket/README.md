@@ -16,7 +16,7 @@ dxx -o contracts/examples/redpacket/redpacket.wast contracts/examples/redpacket/
 
 2. 生成abi:
 ```
-dxx -g contracts/examples/redpacket/redpacket.abi contracts/examples/redpacket/redpacket.cpp 
+rxx -g contracts/examples/redpacket/redpacket.abi contracts/examples/redpacket/redpacket.cpp 
 ```
 
 #### 合约部署和调用
@@ -39,7 +39,7 @@ unlocked >>> deploy_contract redpacket nathan 0 0 ./contracts/examples/redpacket
 1. 发行红包
 ```
 // 使用nathan帐户，发行一个红包， 随机生成的红包口令为DBX81z4c6gEHw57TxHfZyzjA52djZzYGX7KN8sJQcDyg6yitwov5b， 金额总量为100 DBX(链上为大数，需要乘以10万)， 数量为5个
-unlocked >>> call_contract nathan redpacket {"amount":10000000,"asset_id":1.3.1} issue "{\"pubkey\":\"DBX81z4c6gEHw57TxHfZyzjA52djZzYGX7KN8sJQcDyg6yitwov5b\",\"number\":5}" DBX true
+unlocked >>> call_contract nathan redpacket {"amount":10000000,"asset_id":1.3.1} issue "{\"pubkey\":\"RUI81z4c6gEHw57TxHfZyzjA52djZzYGX7KN8sJQcDyg6yitwov5b\",\"number\":5}" DBX true
 ```
 
 2. 发行红包后，查询redpacket合约的帐户余额
@@ -77,7 +77,7 @@ unlocked >>> get_contract_tables redpacket
 unlocked >>> get_table_objects redpacket packet
 [{
     "issuer": 17,
-    "encoded_token": "DBX81z4c6gEHw57TxHfZyzjA52djZzYGX7KN8sJQcDyg6yitwov5b",
+    "encoded_token": "RUI81z4c6gEHw57TxHfZyzjA52djZzYGX7KN8sJQcDyg6yitwov5b",
     "total_amount": {
       "amount": 10000000,
       "asset_id": 0
@@ -119,6 +119,6 @@ unlocked >>> call_contract nathan redpacket null close "{}" DBX true
 
 本次演示使用的口令对
 ```
-pubkey:"DBX81z4c6gEHw57TxHfZyzjA52djZzYGX7KN8sJQcDyg6yitwov5b"
+pubkey:"RUI81z4c6gEHw57TxHfZyzjA52djZzYGX7KN8sJQcDyg6yitwov5b"
 wifkey:"5J9vj4XiwVQ2HNr22uFrxgaaerqrPN7xZQER9z2hwSPeWdbMKBM"
 ```
