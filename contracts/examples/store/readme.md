@@ -1,5 +1,12 @@
-rxx -o store.wast store.cpp
-rxx -g store.abi store.cpp
-deploy_contract store nathan 0 0 /root/ruichain/contracts/examples/store RUI true
+# store
+
+```bash
+mycc -o store.wast store.cpp
+mycc -g store.abi store.cpp
+```
+
+```bash
+deploy_contract store nathan 0 0 /root/rui-core/contracts/examples/store RUI true
 call_contract nathan store null set "{}" RUI true
 call_contract nathan store null show "{}" RUI true
+```

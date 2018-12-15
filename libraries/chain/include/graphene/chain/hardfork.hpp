@@ -104,11 +104,11 @@
 #ifndef HARDFORK_615_TIME
 #define HARDFORK_615_TIME (fc::time_point_sec( 1458752400 ))
 #endif
-// bitshares-core issue #1040 Remove temp-account balance check
+// token-core issue #1040 Remove temp-account balance check
 #ifndef HARDFORK_CORE_1040_TIME
 #define HARDFORK_CORE_1040_TIME (fc::time_point_sec( 1532008920 )) // Thu, 19 Jul 2018 14:02:00 UTC
 #endif
-// bitshares-core issue #184 Fix "Potential something-for-nothing fill bug"
+// token-core issue #184 Fix "Potential something-for-nothing fill bug"
 #ifndef HARDFORK_CORE_184_TIME
 #define HARDFORK_CORE_184_TIME (fc::time_point_sec( 1532008920 )) // Thu, 19 Jul 2018 14:02:00 UTC
 #endif
@@ -116,45 +116,45 @@
 #ifndef HARDFORK_CORE_188_TIME
 #define HARDFORK_CORE_188_TIME (fc::time_point_sec( 1532008920 )) // Thu, 19 Jul 2018 14:02:00 UTC
 #endif
-// bitshares-core #199 Require owner key for change of asset-issuer (new operation)
+// token-core #199 Require owner key for change of asset-issuer (new operation)
 #ifndef HARDFORK_CORE_199_TIME
 #define HARDFORK_CORE_199_TIME (fc::time_point_sec( 1532008920 )) // Thu, 19 Jul 2018 14:02:00 UTC
 #endif
-// bitshares-core #214 Proposal cannot contain proposal_update_operation
+// token-core #214 Proposal cannot contain proposal_update_operation
 #ifndef HARDFORK_CORE_214_TIME
 #define HARDFORK_CORE_214_TIME (fc::time_point_sec( 1532008920 )) // Thu, 19 Jul 2018 14:02:00 UTC
 #endif
-// bitshares-core #216 Process to reset a Smartcoin after a Black Swan
+// token-core #216 Process to reset a Smartcoin after a Black Swan
 #ifndef HARDFORK_CORE_216_TIME
 #define HARDFORK_CORE_216_TIME (fc::time_point_sec( 1512747600 ))
 #endif
-// bitshares-core issue #338 Fix "margin call order fills at price of matching limit_order"
+// token-core issue #338 Fix "margin call order fills at price of matching limit_order"
 #ifndef HARDFORK_CORE_338_TIME
 #define HARDFORK_CORE_338_TIME (fc::time_point_sec( 1532008920 )) // Thu, 19 Jul 2018 14:02:00 UTC
 #endif
-// bitshares-core issue #342
+// token-core issue #342
 // Mitigate rounding issue when matching orders
 #ifndef HARDFORK_CORE_342_TIME
 #define HARDFORK_CORE_342_TIME (fc::time_point_sec( 1532008920 )) // Thu, 19 Jul 2018 14:02:00 UTC
 #endif
-// bitshares-core issue #343
+// token-core issue #343
 // Fix "Inconsistent sorting of call orders between matching against a limit order and a force settle order"
 #ifndef HARDFORK_CORE_343_TIME
 #define HARDFORK_CORE_343_TIME (fc::time_point_sec( 1532008920 )) // Thu, 19 Jul 2018 14:02:00 UTC
 #endif
-// bitshares-core #429 rounding issue when creating assets
+// token-core #429 rounding issue when creating assets
 #ifndef HARDFORK_CORE_429_TIME
 #define HARDFORK_CORE_429_TIME (fc::time_point_sec( 1512747600 ))
 #endif
-// bitshares-core issue #453 Fix "Multiple limit order and call order matching issue"
+// token-core issue #453 Fix "Multiple limit order and call order matching issue"
 #ifndef HARDFORK_CORE_453_TIME
 #define HARDFORK_CORE_453_TIME (fc::time_point_sec( 1532008920 )) // Thu, 19 Jul 2018 14:02:00 UTC
 #endif
-// bitshares-core issue #518 Clean up bitasset_data during maintenance
+// token-core issue #518 Clean up bitasset_data during maintenance
 #ifndef HARDFORK_CORE_518_TIME
 #define HARDFORK_CORE_518_TIME (fc::time_point_sec( 1532008920 )) // Thu, 19 Jul 2018 14:02:00 UTC
 #endif
-// bitshares-core issue #583 Always allow updating a call order to higher collateral ratio
+// token-core issue #583 Always allow updating a call order to higher collateral ratio
 #ifndef HARDFORK_CORE_583_TIME
 #define HARDFORK_CORE_583_TIME (fc::time_point_sec( 1532008920 )) // Thu, 19 Jul 2018 14:02:00 UTC
 #endif
@@ -162,42 +162,42 @@
 #ifndef HARDFORK_CORE_588_TIME
 #define HARDFORK_CORE_588_TIME (fc::time_point_sec( 1532008920 )) // Thu, 19 Jul 2018 14:02:00 UTC
 #endif
-// bitshares-core issue #604
+// token-core issue #604
 // Implement BSIP 26: refund order creation fee in original paid asset when order is cancelled
 #ifndef HARDFORK_CORE_604_TIME
 #define HARDFORK_CORE_604_TIME (fc::time_point_sec( 1532008920 )) // Thu, 19 Jul 2018 14:02:00 UTC
 #endif
-// bitshares-core issue #606 Fix "Undercollateralized short positions should be called regardless of asks"
+// token-core issue #606 Fix "Undercollateralized short positions should be called regardless of asks"
 #ifndef HARDFORK_CORE_606_TIME
 #define HARDFORK_CORE_606_TIME (fc::time_point_sec( 1532008920 )) // Thu, 19 Jul 2018 14:02:00 UTC
 #endif
-// bitshares-core issue #620 Allow numbers at the end of asset symbol
+// token-core issue #620 Allow numbers at the end of asset symbol
 #ifndef HARDFORK_CORE_620_TIME
 #define HARDFORK_CORE_620_TIME (fc::time_point_sec( 1532008920 )) // Thu, 19 Jul 2018 14:02:00 UTC
 #endif
-// bitshares-core issue #625 Fix "Potential erratic order matching issue involving margin call orders"
+// token-core issue #625 Fix "Potential erratic order matching issue involving margin call orders"
 #ifndef HARDFORK_CORE_625_TIME
 #define HARDFORK_CORE_625_TIME (fc::time_point_sec( 1532008920 )) // Thu, 19 Jul 2018 14:02:00 UTC
 #endif
-// bitshares-core issue #834 "BSIP38: add target CR option to short positions"
+// token-core issue #834 "BSIP38: add target CR option to short positions"
 #ifndef HARDFORK_CORE_834_TIME
 #define HARDFORK_CORE_834_TIME (fc::time_point_sec( 1532008920 )) // Thu, 19 Jul 2018 14:02:00 UTC
 #endif
-// bitshares-core issue #868 Clear price feed data after updated a bitAsset's backing asset ID
-// bitshares-core issue #890 Update median feeds after feed_lifetime_sec changed
+// token-core issue #868 Clear price feed data after updated a bitAsset's backing asset ID
+// token-core issue #890 Update median feeds after feed_lifetime_sec changed
 #ifndef HARDFORK_CORE_868_890_TIME
 #define HARDFORK_CORE_868_890_TIME (fc::time_point_sec( 1532008920 )) // Thu, 19 Jul 2018 14:02:00 UTC
 #endif
-// bitshares-core issue #922 Missing checks when updating an asset's bitasset_data
-// bitshares-core issue #931 Changing backing asset ID runs some checks against the old value instead of the new
+// token-core issue #922 Missing checks when updating an asset's bitasset_data
+// token-core issue #931 Changing backing asset ID runs some checks against the old value instead of the new
 #ifndef HARDFORK_CORE_922_931_TIME
 #define HARDFORK_CORE_922_931_TIME (fc::time_point_sec( 1532008920 )) // Thu, 19 Jul 2018 14:02:00 UTC
 #endif
-// bitshares-core issue #935 Call check_call_orders not only when settlement_price changed
+// token-core issue #935 Call check_call_orders not only when settlement_price changed
 #ifndef HARDFORK_CORE_935_TIME
 #define HARDFORK_CORE_935_TIME (fc::time_point_sec( 1532008920 )) // Thu, 19 Jul 2018 14:02:00 UTC
 #endif
-// bitshares-core issue #942
+// token-core issue #942
 //   Incorrectly checking asset authorization for withdraw_from_account in withdraw_permission_claim_evaluator
 #ifndef HARDFORK_CORE_942_TIME
 #define HARDFORK_CORE_942_TIME (fc::time_point_sec( 1532008920 )) // Thu, 19 Jul 2018 14:02:00 UTC

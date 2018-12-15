@@ -1,12 +1,11 @@
 RUIChain
 ==============
 
-[Build Status](https://github.com/ruione/ruichain/branches):
+[Build Status](https://github.com/rui-coin/rui-core/branches):
 
 `master` | `develop`  
  --- | --- | --- | --- | ---
- [![](https://github.com/ruione/ruichain/master)](https://github.com/ruione/ruichain) | [![](https://github.com/ruione/ruichain/tree/develop)](https://github.com/ruione/ruichain) 
-
+ [![master](https://github.com/rui-coin/rui-core/master)](https://github.com/rui-coin/rui-core) | [![develop](https://github.com/rui-coin/rui-core/tree/develop)](https://github.com/rui-coin/rui-core)
 
 * [Getting Started](#getting-started)
 * [Support](#support)
@@ -17,12 +16,12 @@ RUIChain
 
 RUIChain Core is the RUIChain blockchain implementation and command-line interface.
 RUI Chain is developed based on graphene, namely the project of Bitshares. We have made our own consensus mechanism, aka D-DPoS, in brief a contribution-based and relatively randomized super-node election mechanism, in order to avoid ballot rigging and improve security. Also, we have implemented our own virtual machine (which is not included in Bitshares) for smart contracts, which is also compatible with Solidarity, the most popular Ethereum smart contract language.
-The web wallet is [RUIChain UI](https://github.com/ruione/ruiui).
+The web wallet is [RUIChain UI](https://github.com/rui-coin/ruiui).
 
 **NOTE:** The official RUIChain git repository location, default branch, and submodule remotes were recently changed. Existing
 repositories can be updated with the following steps:
 
-    git remote set-url origin https://github.com/ruione/ruichain.git
+    git remote set-url origin https://github.com/rui-coin/rui-core.git
     git checkout master
     git remote set-head origin --auto
     git pull
@@ -31,8 +30,9 @@ repositories can be updated with the following steps:
 
 Getting Started
 ---------------
+
 Build instructions and additional documentation are available in the
-[wiki](https://github.com/ruione/ruichain/wiki).
+[wiki](https://github.com/rui-coin/rui-core/wiki).
 
 We recommend building on Ubuntu 16.04 LTS, and the build dependencies may be installed with:
 
@@ -41,8 +41,8 @@ We recommend building on Ubuntu 16.04 LTS, and the build dependencies may be ins
 
 To build after all dependencies are installed:
 
-    git clone https://github.com/ruione/ruichain.git
-    cd ruichain
+    git clone https://github.com/rui-coin/rui-core.git
+    cd rui-core
     git checkout <LATEST_RELEASE_TAG>
     git submodule update --init --recursive
     cmake -DCMAKE_BUILD_TYPE=RelWithDebInfo .
@@ -64,7 +64,7 @@ the blockchain. After syncing, you can exit the node using Ctrl+C and setup the 
 
     rpc-endpoint = 127.0.0.1:8090
 
-**NOTE:** By default the witness node will start in reduced memory ram mode by using some of the commands detailed in [Memory reduction for nodes](https://github.com/ruione/ruichain/wiki/Memory-reduction-for-nodes).
+**NOTE:** By default the witness node will start in reduced memory ram mode by using some of the commands detailed in [Memory reduction for nodes](https://github.com/rui-coin/rui-core/wiki/Memory-reduction-for-nodes).
 In order to run a full node with all the account history you need to remove `partial-operations` and `max-ops-per-account` from your config file. Please note that currently(2017-12-23) a full node need 54GB of RAM to operate and required memory is growing fast.
 
 After starting the witness node again, in a separate terminal you can run:
@@ -83,14 +83,14 @@ To import your initial balance:
 If you send private keys over this connection, `rpc-endpoint` should be bound to localhost for security.
 
 Use `help` to see all available wallet commands. Source definition and listing of all commands is available
-[here](https://github.com/ruione/ruichain/blob/master/libraries/wallet/include/graphene/wallet/wallet.hpp).
+[here](https://github.com/rui-coin/rui-core/blob/master/libraries/wallet/include/graphene/wallet/wallet.hpp).
 
 Support
 -------
 
-RUIChain Core bugs can be reported directly to the [issue tracker](https://github.com/ruione/ruichain/issues).
+RUIChain Core bugs can be reported directly to the [issue tracker](https://github.com/rui-coin/rui-core/issues).
 
-RUIChain UI bugs should be reported to the [UI issue tracker](https://github.com/ruione/rui-ui/issues)
+RUIChain UI bugs should be reported to the [UI issue tracker](https://github.com/rui-coin/rui-ui/issues)
 
 Up to date online Doxygen documentation can be found at [Doxygen](https://rui.org/doxygen/hierarchy.html)
 
@@ -116,7 +116,7 @@ We can do the same thing using an HTTP client such as `curl` for API's which do 
 
 API 0 is accessible using regular JSON-RPC:
 
-    $ curl --data '{"jsonrpc": "2.0", "method": "get_accounts", "params": [["1.2.0"]], "id": 1}' http://127.0.0.1:8090/rpc
+    curl --data '{"jsonrpc": "2.0", "method": "get_accounts", "params": [["1.2.0"]], "id": 1}' http://127.0.0.1:8090/rpc
 
 Accessing restricted API's
 --------------------------
@@ -168,7 +168,7 @@ it is fairly simple to write API methods to expose database methods.
 FAQ
 ---
 
-- Is there a way to generate help with parameter names and method descriptions?
+* Is there a way to generate help with parameter names and method descriptions?
 
     Yes. Documentation of the code base, including APIs, can be generated using Doxygen. Simply run `doxygen` in this directory.
 
@@ -181,13 +181,13 @@ FAQ
     output should look like this:
         `signed_transaction transfer(string from, string to, string amount, string asset_symbol, string memo, bool broadcast)`
 
-- Is there a way to allow external program to drive `cli_wallet` via websocket, JSONRPC, or HTTP?
+* Is there a way to allow external program to drive `cli_wallet` via websocket, JSONRPC, or HTTP?
 
     Yes. External programs may connect to the CLI wallet and make its calls over a websockets API. To do this, run the wallet in
     server mode, i.e. `cli_wallet -s "127.0.0.1:9999"` and then have the external program connect to it over the specified port
     (in this example, port 9999).
 
-- Is there a way to access methods which require login over HTTP?
+* Is there a way to access methods which require login over HTTP?
 
     No.  Login is inherently a stateful process (logging in changes what the server will do for certain requests, that's kind
     of the point of having it).  If you need to track state across HTTP RPC calls, you must maintain a session across multiple
@@ -196,7 +196,7 @@ FAQ
 
     Websockets solves all these problems.  If you need to access Graphene's stateful methods, you need to use Websockets.
 
-- What is the meaning of `a.b.c` numbers?
+* What is the meaning of `a.b.c` numbers?
 
     The first number specifies the *space*.  Space 1 is for protocol objects, 2 is for implementation objects.
     Protocol space objects can appear on the wire, for example in the binary form of transactions.
@@ -205,12 +205,12 @@ FAQ
 
     The second number specifies the *type*.  The type of the object determines what fields it has.  For a
     complete list of type ID's, see `enum object_type` and `enum impl_object_type` in
-    [types.hpp](https://github.com/ruione/rui-2/blob/ruione/libraries/chain/include/graphene/chain/protocol/types.hpp).
+    [types.hpp](https://github.com/rui-coin/rui-2/blob/rui-coin/libraries/chain/include/graphene/chain/protocol/types.hpp).
 
     The third number specifies the *instance*.  The instance of the object is different for each individual
     object.
 
-- The answer to the previous question was really confusing.  Can you make it clearer?
+* The answer to the previous question was really confusing.  Can you make it clearer?
 
     All account ID's are of the form `1.2.x`.  If you were the 9735th account to be registered,
     your account's ID will be `1.2.9735`.  Account `0` is special (it's the "committee account,"
@@ -223,7 +223,7 @@ FAQ
     The first and second number together identify the kind of thing you're talking about (`1.2` for accounts,
     `1.3` for assets).  The third number identifies the particular thing.
 
-- How do I get the `network_add_nodes` command to work?  Why is it so complicated?
+* How do I get the `network_add_nodes` command to work?  Why is it so complicated?
 
     You need to follow the instructions in the "Accessing restricted API's" section to
     allow a username/password access to the `network_node` API.  Then you need
@@ -235,8 +235,9 @@ FAQ
     less fine if your `witness_node` allows the general public to control which p2p nodes it's
     connecting to.  Therefore the API to add p2p connections needs to be set up with proper access
     controls.
- 
+
 License
 -------
-RUIChain Core is under the MIT license. See [LICENSE](https://github.com/ruione/ruichain/blob/master/LICENSE.txt)
+
+RUIChain Core is under the MIT license. See [LICENSE](https://github.com/rui-coin/rui-core/blob/master/LICENSE.txt)
 for more information.
