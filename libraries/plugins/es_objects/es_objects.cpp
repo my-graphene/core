@@ -164,7 +164,7 @@ void es_objects_plugin_impl::PrepareProposal(const proposal_object* proposal_obj
    }
 
    std::string data = fc::json::to_string(prop);
-   prepare = graphene::utilities::createBulk("bitshares-proposal", data, "", 1);
+   prepare = graphene::utilities::createBulk("graphene-proposal", data, "", 1);
    bulk.insert(bulk.end(), prepare.begin(), prepare.end());
    prepare.clear();
 }
@@ -200,7 +200,7 @@ void es_objects_plugin_impl::PrepareAccount(const account_object* account_object
    }
 
    std::string data = fc::json::to_string(acct);
-   prepare = graphene::utilities::createBulk("bitshares-account", data, "", 1);
+   prepare = graphene::utilities::createBulk("graphene-account", data, "", 1);
    bulk.insert(bulk.end(), prepare.begin(), prepare.end());
    prepare.clear();
 }
@@ -226,7 +226,7 @@ void es_objects_plugin_impl::PrepareAsset(const asset_object* asset_object, cons
    }
 
    std::string data = fc::json::to_string(_asset);
-   prepare = graphene::utilities::createBulk("bitshares-asset", data, "", 1);
+   prepare = graphene::utilities::createBulk("graphene-asset", data, "", 1);
    bulk.insert(bulk.end(), prepare.begin(), prepare.end());
    prepare.clear();
 }
@@ -249,7 +249,7 @@ void es_objects_plugin_impl::PrepareBalance(const balance_object* balance_object
    }
 
    std::string data = fc::json::to_string(balance);
-   prepare = graphene::utilities::createBulk("bitshares-balance", data, "", 1);
+   prepare = graphene::utilities::createBulk("graphene-balance", data, "", 1);
    bulk.insert(bulk.end(), prepare.begin(), prepare.end());
    prepare.clear();
 }
@@ -275,7 +275,7 @@ void es_objects_plugin_impl::PrepareLimit(const limit_order_object* limit_object
    }
 
    std::string data = fc::json::to_string(limit);
-   prepare = graphene::utilities::createBulk("bitshares-limitorder", data, "", 1);
+   prepare = graphene::utilities::createBulk("graphene-limitorder", data, "", 1);
    bulk.insert(bulk.end(), prepare.begin(), prepare.end());
    prepare.clear();
 }
@@ -300,7 +300,7 @@ void es_objects_plugin_impl::PrepareBitAsset(const asset_bitasset_data_object* b
       }
 
       std::string data = fc::json::to_string(bitasset);
-      prepare = graphene::utilities::createBulk("bitshares-bitasset", data, "", 1);
+      prepare = graphene::utilities::createBulk("graphene-bitasset", data, "", 1);
       bulk.insert(bulk.end(), prepare.begin(), prepare.end());
       prepare.clear();
    }

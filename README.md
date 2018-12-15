@@ -1,4 +1,4 @@
-RUIChain
+RuiChain
 ==============
 
 [Build Status](https://github.com/rui-coin/rui-core/branches):
@@ -14,11 +14,11 @@ RUIChain
 * [FAQ](#faq)
 * [License](#license)
 
-RUIChain Core is the RUIChain blockchain implementation and command-line interface.
+RuiChain Core is the RuiChain blockchain implementation and command-line interface.
 RUI Chain is developed based on graphene, namely the project of Bitshares. We have made our own consensus mechanism, aka D-DPoS, in brief a contribution-based and relatively randomized super-node election mechanism, in order to avoid ballot rigging and improve security. Also, we have implemented our own virtual machine (which is not included in Bitshares) for smart contracts, which is also compatible with Solidarity, the most popular Ethereum smart contract language.
-The web wallet is [RUIChain UI](https://github.com/rui-coin/ruiui).
+The web wallet is [RuiChain UI](https://github.com/rui-coin/ruiui).
 
-**NOTE:** The official RUIChain git repository location, default branch, and submodule remotes were recently changed. Existing
+**NOTE:** The official RuiChain git repository location, default branch, and submodule remotes were recently changed. Existing
 repositories can be updated with the following steps:
 
     git remote set-url origin https://github.com/rui-coin/rui-core.git
@@ -48,9 +48,9 @@ To build after all dependencies are installed:
     cmake -DCMAKE_BUILD_TYPE=RelWithDebInfo .
     make
 
-**NOTE:** RUIChain requires an [OpenSSL](https://www.openssl.org/) version in the 1.0.x series. OpenSSL 1.1.0 and newer are NOT supported. If your system OpenSSL version is newer, then you will need to manually provide an older version of OpenSSL and specify it to CMake using `-DOPENSSL_INCLUDE_DIR`, `-DOPENSSL_SSL_LIBRARY`, and `-DOPENSSL_CRYPTO_LIBRARY`.
+**NOTE:** RuiChain requires an [OpenSSL](https://www.openssl.org/) version in the 1.0.x series. OpenSSL 1.1.0 and newer are NOT supported. If your system OpenSSL version is newer, then you will need to manually provide an older version of OpenSSL and specify it to CMake using `-DOPENSSL_INCLUDE_DIR`, `-DOPENSSL_SSL_LIBRARY`, and `-DOPENSSL_CRYPTO_LIBRARY`.
 
-**NOTE:** RUIChain requires a [Boost](http://www.boost.org/) version in the range [1.57, 1.63]. Versions earlier than
+**NOTE:** RuiChain requires a [Boost](http://www.boost.org/) version in the range [1.57, 1.63]. Versions earlier than
 1.57 or newer than 1.63 are NOT supported. If your system Boost version is newer, then you will need to manually build
 an older version of Boost and specify it to CMake using `DBOOST_ROOT`.
 
@@ -88,9 +88,9 @@ Use `help` to see all available wallet commands. Source definition and listing o
 Support
 -------
 
-RUIChain Core bugs can be reported directly to the [issue tracker](https://github.com/rui-coin/rui-core/issues).
+RuiChain Core bugs can be reported directly to the [issue tracker](https://github.com/rui-coin/rui-core/issues).
 
-RUIChain UI bugs should be reported to the [UI issue tracker](https://github.com/rui-coin/rui-ui/issues)
+RuiChain UI bugs should be reported to the [UI issue tracker](https://github.com/rui-coin/rui-ui/issues)
 
 Up to date online Doxygen documentation can be found at [Doxygen](https://rui.org/doxygen/hierarchy.html)
 
@@ -239,5 +239,5 @@ FAQ
 License
 -------
 
-RUIChain Core is under the MIT license. See [LICENSE](https://github.com/rui-coin/rui-core/blob/master/LICENSE.txt)
+RuiChain Core is under the MIT license. See [LICENSE](https://github.com/rui-coin/rui-core/blob/master/LICENSE.txt)
 for more information.
