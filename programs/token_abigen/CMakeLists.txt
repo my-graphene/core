@@ -4,7 +4,7 @@ find_package(LLVM 4.0 REQUIRED CONFIG)
 
 link_directories(${LLVM_LIBRARY_DIR})
 
-add_executable(rui-abigen ${SOURCES})
+add_executable(token-abigen ${SOURCES})
 
 set( CMAKE_CXX_STANDARD 14 )
 
@@ -18,11 +18,11 @@ if( GPERFTOOLS_FOUND )
     list( APPEND PLATFORM_SPECIFIC_LIBS tcmalloc )
 endif()
 
-target_link_libraries(rui-abigen abi_generator)
+target_link_libraries(token-abigen abi_generator)
 
 
 install( TARGETS
-   rui-abigen
+   token-abigen
 
    RUNTIME DESTINATION bin
    LIBRARY DESTINATION lib

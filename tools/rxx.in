@@ -5,7 +5,7 @@ if [ "${RUI_BIN_INSTALL_DIR}" == "." ]; then
   RUI_BIN_INSTALL_DIR=`pwd`
 fi
 RUI_INSTALL_DIR=`dirname ${RUI_BIN_INSTALL_DIR}`
-ABIGEN=${RUI_INSTALL_DIR}/bin/rui-abigen
+ABIGEN=${RUI_INSTALL_DIR}/bin/token-abigen
 BOOST_INCLUDE_DIR=@Boost_INCLUDE_DIR@
 function copy_skeleton {
     set -e
