@@ -15,8 +15,8 @@ RuiChain
 * [License](#license)
 
 RuiChain Core is the RuiChain blockchain implementation and command-line interface.
-RUI Chain is developed based on graphene, namely the project of Bitshares. We have made our own consensus mechanism, aka D-DPoS, in brief a contribution-based and relatively randomized super-node election mechanism, in order to avoid ballot rigging and improve security. Also, we have implemented our own virtual machine (which is not included in Bitshares) for smart contracts, which is also compatible with Solidarity, the most popular Ethereum smart contract language.
-The web wallet is [RuiChain UI](https://github.com/rui-coin/ruiui).
+RUI Chain is developed based on graphene, namely the project of RuiChain. We have made our own consensus mechanism, aka D-DPoS, in brief a contribution-based and relatively randomized super-node election mechanism, in order to avoid ballot rigging and improve security. Also, we have implemented our own virtual machine (which is not included in RuiChain) for smart contracts, which is also compatible with Solidarity, the most popular Ethereum smart contract language.
+The web wallet is [RuiChain UI](https://github.com/rui-coin/rui-ui).
 
 **NOTE:** The official RuiChain git repository location, default branch, and submodule remotes were recently changed. Existing
 repositories can be updated with the following steps:
