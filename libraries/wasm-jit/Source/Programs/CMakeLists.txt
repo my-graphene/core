@@ -1,7 +1,7 @@
-add_executable(rui-wast2wasm Assemble.cpp CLI.h)
-target_link_libraries(rui-wast2wasm Logging IR WAST WASM)
-set_target_properties(rui-wast2wasm PROPERTIES FOLDER Programs)
-INSTALL(TARGETS rui-wast2wasm DESTINATION ${CMAKE_INSTALL_BINDIR})
+add_executable(token-wast2wasm Assemble.cpp CLI.h)
+target_link_libraries(token-wast2wasm Logging IR WAST WASM)
+set_target_properties(token-wast2wasm PROPERTIES FOLDER Programs)
+INSTALL(TARGETS token-wast2wasm DESTINATION ${CMAKE_INSTALL_BINDIR})
 
 add_executable(Disassemble Disassemble.cpp CLI.h)
 target_link_libraries(Disassemble Logging IR WAST WASM)

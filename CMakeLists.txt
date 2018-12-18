@@ -166,7 +166,7 @@ add_subdirectory( programs )
 add_subdirectory( tools )
 
 
-install_directory_permissions(DIRECTORY ${CMAKE_INSTALL_FULL_SYSCONFDIR}/rui)
+install_directory_permissions(DIRECTORY ${CMAKE_INSTALL_FULL_SYSCONFDIR}/token)
 
 
 if (ENABLE_INSTALLER)
@@ -191,7 +191,7 @@ set(CPACK_PACKAGE_VERSION "${CPACK_PACKAGE_VERSION_MAJOR}.${CPACK_PACKAGE_VERSIO
 set(CPACK_PACKAGE_DESCRIPTION "A client for the rui-core network")
 set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "A client for the rui-core network")
 set(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_CURRENT_SOURCE_DIR}/LICENSE.md")
-set(CPACK_PACKAGE_INSTALL_DIRECTORY "rui ${CPACK_PACKAGE_VERSION}")
+set(CPACK_PACKAGE_INSTALL_DIRECTORY "token ${CPACK_PACKAGE_VERSION}")
 
 if(WIN32)
  SET(CPACK_GENERATOR "ZIP;NSIS")
@@ -199,7 +199,7 @@ if(WIN32)
  set(CPACK_NSIS_EXECUTABLES_DIRECTORY .)
  set(CPACK_NSIS_PACKAGE_NAME "rui-core v${CPACK_PACKAGE_VERSION}")
  set(CPACK_NSIS_DISPLAY_NAME "${CPACK_NSIS_PACKAGE_NAME}")
- set(CPACK_NSIS_DEFINES "  !define MUI_STARTMENUPAGE_DEFAULTFOLDER \\\"rui\\\"")
+ set(CPACK_NSIS_DEFINES "  !define MUI_STARTMENUPAGE_DEFAULTFOLDER \\\"token\\\"")
  # it seems like windows zip files usually don't have a single directory inside them, unix tgz frequently do
  SET(CPACK_INCLUDE_TOPLEVEL_DIRECTORY 0)
 

@@ -92,8 +92,6 @@ RuiChain Core bugs can be reported directly to the [issue tracker](https://githu
 
 RuiChain UI bugs should be reported to the [UI issue tracker](https://github.com/rui-coin/rui-ui/issues)
 
-Up to date online Doxygen documentation can be found at [Doxygen](https://rui.org/doxygen/hierarchy.html)
-
 Using the API
 -------------
 

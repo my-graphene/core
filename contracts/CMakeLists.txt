@@ -11,14 +11,14 @@ file(GLOB SKELETONS RELATIVE ${CMAKE_SOURCE_DIR}/contracts "skeleton/*")
 
 # Documented multiple output support is broken, so properly setting up the multiple
 # dependencies in the custom target is not possible.  (CMake 3.5)
-add_custom_command(OUTPUT share/rui/skeleton/skeleton.cpp
-                   COMMAND ${CMAKE_COMMAND} -E make_directory ../share/rui/skeleton
+add_custom_command(OUTPUT share/token/skeleton/skeleton.cpp
+                   COMMAND ${CMAKE_COMMAND} -E make_directory ../share/token/skeleton
                    COMMAND ${CMAKE_COMMAND} -E copy_directory
-                   ${CMAKE_CURRENT_SOURCE_DIR}/skeleton ../share/rui/skeleton
+                   ${CMAKE_CURRENT_SOURCE_DIR}/skeleton ../share/token/skeleton
                    DEPENDS ${SKELETONS}
                    COMMENT Copying skeleton contract...
                    VERBATIM)
-add_custom_target(copy_skeleton_contract ALL DEPENDS share/rui/skeleton/skeleton.cpp)
+add_custom_target(copy_skeleton_contract ALL DEPENDS share/token/skeleton/skeleton.cpp)
 
 MESSAGE( STATUS "------- cmake_install_full_includedir ------ is: "
     ${CMAKE_INSTALL_FULL_INCLUDEDIR} )
@@ -26,5 +26,5 @@ MESSAGE( STATUS "------- cmake_install_full_includedir ------ is: "
 install(DIRECTORY graphenelib DESTINATION ${CMAKE_INSTALL_FULL_INCLUDEDIR})
 install(DIRECTORY musl DESTINATION ${CMAKE_INSTALL_FULL_INCLUDEDIR})
 install(DIRECTORY libc++ DESTINATION ${CMAKE_INSTALL_FULL_INCLUDEDIR})
-install(DIRECTORY skeleton DESTINATION ${CMAKE_INSTALL_FULL_DATAROOTDIR}/rui)
-install_directory_permissions(DIRECTORY ${CMAKE_INSTALL_FULL_DATAROOTDIR}/rui)
+install(DIRECTORY skeleton DESTINATION ${CMAKE_INSTALL_FULL_DATAROOTDIR}/token)
+install_directory_permissions(DIRECTORY ${CMAKE_INSTALL_FULL_DATAROOTDIR}/token)

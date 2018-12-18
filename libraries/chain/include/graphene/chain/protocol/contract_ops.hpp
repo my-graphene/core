@@ -1,5 +1,5 @@
 /*
-    Copyright (C) 2018 rui
+    Copyright (C) 2018 token
 
     This file is part of rui-core.
 

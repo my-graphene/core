@@ -9,7 +9,7 @@ ABIGEN=${RUI_INSTALL_DIR}/bin/token-abigen
 BOOST_INCLUDE_DIR=@Boost_INCLUDE_DIR@
 function copy_skeleton {
     set -e
-    cp -r "${RUI_INSTALL_DIR}/share/rui/skeleton/." $newname
+    cp -r "${RUI_INSTALL_DIR}/share/token/skeleton/." $newname
 
     for file in $(find ./$newname -name 'skeleton.*')
     do
@@ -52,15 +52,15 @@ function build_contract {
     done
 
     ($PRINT_CMDS; @WASM_LLVM_LINK@ -only-needed -o $workdir/linked.bc $workdir/built/* \
-                                   ${RUI_INSTALL_DIR}/usr/share/rui/contractsdk/lib/graphenelib.bc \
-                                   ${RUI_INSTALL_DIR}/usr/share/rui/contractsdk/lib/libc++.bc \
-                                   ${RUI_INSTALL_DIR}/usr/share/rui/contractsdk/lib/libc.bc
+                                   ${RUI_INSTALL_DIR}/usr/share/token/contractsdk/lib/graphenelib.bc \
+                                   ${RUI_INSTALL_DIR}/usr/share/token/contractsdk/lib/libc++.bc \
+                                   ${RUI_INSTALL_DIR}/usr/share/token/contractsdk/lib/libc.bc
 
 
     )
     ($PRINT_CMDS; @WASM_LLC@ -thread-model=single --asm-verbose=false -o $workdir/assembly.s $workdir/linked.bc)
-    ($PRINT_CMDS; ${RUI_INSTALL_DIR}/bin/rui-s2wasm -o $outname -s 16384 $workdir/assembly.s)
-    ($PRINT_CMDS; ${RUI_INSTALL_DIR}/bin/rui-wast2wasm $outname ${outname%.*}.wasm -n)
+    ($PRINT_CMDS; ${RUI_INSTALL_DIR}/bin/token-s2wasm -o $outname -s 16384 $workdir/assembly.s)
+    ($PRINT_CMDS; ${RUI_INSTALL_DIR}/bin/token-wast2wasm $outname ${outname%.*}.wasm -n)
 
     ($PRINT_CMDS; rm -rf $workdir)
     set +e
