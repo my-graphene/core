@@ -1,15 +1,15 @@
 #!/bin/bash
 
-RUI_BIN_INSTALL_DIR=`dirname $0`
-if [ "${RUI_BIN_INSTALL_DIR}" == "." ]; then
-  RUI_BIN_INSTALL_DIR=`pwd`
+TOKEN_BIN_INSTALL_DIR=`dirname $0`
+if [ "${TOKEN_BIN_INSTALL_DIR}" == "." ]; then
+  TOKEN_BIN_INSTALL_DIR=`pwd`
 fi
-RUI_INSTALL_DIR=`dirname ${RUI_BIN_INSTALL_DIR}`
-ABIGEN=${RUI_INSTALL_DIR}/bin/token-abigen
+TOKEN_INSTALL_DIR=`dirname ${TOKEN_BIN_INSTALL_DIR}`
+ABIGEN=${TOKEN_INSTALL_DIR}/bin/token-abigen
 BOOST_INCLUDE_DIR=@Boost_INCLUDE_DIR@
 function copy_skeleton {
     set -e
-    cp -r "${RUI_INSTALL_DIR}/share/token/skeleton/." $newname
+    cp -r "${TOKEN_INSTALL_DIR}/share/token/skeleton/." $newname
 
     for file in $(find ./$newname -name 'skeleton.*')
     do
@@ -41,9 +41,9 @@ function build_contract {
 
         ($PRINT_CMDS; @WASM_CLANG@ -emit-llvm -O3 --std=c++14 --target=wasm32 -nostdinc \
                                    -nostdlib -nostdlibinc -ffreestanding -nostdlib -fno-threadsafe-statics -fno-rtti \
-                                   -fno-exceptions -I ${RUI_INSTALL_DIR}/include \
-                                   -I${RUI_INSTALL_DIR}/include/libc++/upstream/include \
-                                   -I${RUI_INSTALL_DIR}/include/musl/upstream/include \
+                                   -fno-exceptions -I ${TOKEN_INSTALL_DIR}/include \
+                                   -I${TOKEN_INSTALL_DIR}/include/libc++/upstream/include \
+                                   -I${TOKEN_INSTALL_DIR}/include/musl/upstream/include \
                                    -I${BOOST_INCLUDE_DIR} \
                                    -I $filePath \
                                    -c $file -o $workdir/built/$name
@@ -52,15 +52,15 @@ function build_contract {
     done
 
     ($PRINT_CMDS; @WASM_LLVM_LINK@ -only-needed -o $workdir/linked.bc $workdir/built/* \
-                                   ${RUI_INSTALL_DIR}/usr/share/token/contractsdk/lib/graphenelib.bc \
-                                   ${RUI_INSTALL_DIR}/usr/share/token/contractsdk/lib/libc++.bc \
-                                   ${RUI_INSTALL_DIR}/usr/share/token/contractsdk/lib/libc.bc
+                                   ${TOKEN_INSTALL_DIR}/usr/share/token/contractsdk/lib/graphenelib.bc \
+                                   ${TOKEN_INSTALL_DIR}/usr/share/token/contractsdk/lib/libc++.bc \
+                                   ${TOKEN_INSTALL_DIR}/usr/share/token/contractsdk/lib/libc.bc
 
 
     )
     ($PRINT_CMDS; @WASM_LLC@ -thread-model=single --asm-verbose=false -o $workdir/assembly.s $workdir/linked.bc)
-    ($PRINT_CMDS; ${RUI_INSTALL_DIR}/bin/token-s2wasm -o $outname -s 16384 $workdir/assembly.s)
-    ($PRINT_CMDS; ${RUI_INSTALL_DIR}/bin/token-wast2wasm $outname ${outname%.*}.wasm -n)
+    ($PRINT_CMDS; ${TOKEN_INSTALL_DIR}/bin/token-s2wasm -o $outname -s 16384 $workdir/assembly.s)
+    ($PRINT_CMDS; ${TOKEN_INSTALL_DIR}/bin/token-wast2wasm $outname ${outname%.*}.wasm -n)
 
     ($PRINT_CMDS; rm -rf $workdir)
     set +e
@@ -77,10 +77,10 @@ function generate_abi {
 
     ${ABIGEN} -extra-arg=-c -extra-arg=--std=c++14 -extra-arg=--target=wasm32 \
         -extra-arg=-nostdinc -extra-arg=-nostdinc++ -extra-arg=-DABIGEN \
-        -extra-arg=-I${RUI_INSTALL_DIR}/include/libc++/upstream/include \
-        -extra-arg=-I${RUI_INSTALL_DIR}/include/musl/upstream/include \
+        -extra-arg=-I${TOKEN_INSTALL_DIR}/include/libc++/upstream/include \
+        -extra-arg=-I${TOKEN_INSTALL_DIR}/include/musl/upstream/include \
         -extra-arg=-I${BOOST_INCLUDE_DIR} \
-        -extra-arg=-I${RUI_INSTALL_DIR}/include -extra-arg=-I$context_folder \
+        -extra-arg=-I${TOKEN_INSTALL_DIR}/include -extra-arg=-I$context_folder \
         -extra-arg=-fparse-all-comments -destination-file=${outname} -verbose=0 \
         -context=$context_folder $1 --
 

@@ -3,7 +3,7 @@
 #include <graphene/chain/wasm_interface.hpp>
 #include <graphene/chain/wasm_constraints.hpp>
 
-#define RUI_INJECTED_MODULE_NAME "rui_injection"
+#define TOKEN_INJECTED_MODULE_NAME "token_injection"
 
 using namespace fc;
 

@@ -114,7 +114,7 @@ struct abi_def {
    abi_extensions_type   abi_extensions;
 };
 
-abi_def rui_contract_abi(const abi_def& rui_system_abi);
+abi_def token_contract_abi(const abi_def& token_system_abi);
 vector<type_def> common_type_defs();
 
 } } /// namespace graphene::chain

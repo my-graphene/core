@@ -1,5 +1,5 @@
-deploy_contract ccca nathan 0 0 /Users/sky/rui_install/contract_call_contract/contracta RUI true
+deploy_contract ccca nathan 0 0 examples/contract_call_contract/contracta RUI true
 
-deploy_contract cccb nathan 0 0 /Users/sky/rui_install/contract_call_contract/contractb RUI true
+deploy_contract cccb nathan 0 0 examples/contract_call_contract/contractb RUI true
 
 call_contract beita ccca null hicontract "{\"act_id\":77}" RUI true

@@ -58,7 +58,7 @@ std::unique_ptr<FrontendActionFactory> create_find_macro_factory(string &contrac
 
         clang::FrontendAction *create() override
         {
-            return new find_rui_abi_macro_action(contract, actions, abi_context);
+            return new find_token_abi_macro_action(contract, actions, abi_context);
         }
     };
 
