@@ -134,10 +134,10 @@ typedef secondary_index<uint64_t, index64_object_type>::index_index index64_inde
 template<typename T>
 struct get_gph_index_type {};
 
-#define GPH_SET_INDEX_TYPE(OBJECT_TYPE, INDEX_TYPE)  \
+#define RUI_SET_INDEX_TYPE(OBJECT_TYPE, INDEX_TYPE)  \
     template<> struct get_gph_index_type<OBJECT_TYPE> { typedef INDEX_TYPE type; };
 
-GPH_SET_INDEX_TYPE(graphene::chain::index64_object, graphene::chain::index64_index)
+RUI_SET_INDEX_TYPE(graphene::chain::index64_object, graphene::chain::index64_index)
 
 FC_REFLECT_DERIVED(graphene::chain::table_id_object, (graphene::db::object),
                    (code)

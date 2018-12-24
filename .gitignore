@@ -11,7 +11,10 @@ moc_*
 
 genesis.json
 
-rui-core.*
+*.config*
+*.creator*
+*.files*
+*.includes*
 
 libraries/utilities/git_revision.cpp
 
