@@ -197,7 +197,7 @@ class apply_context {
                typename SecondaryKeyProxy = typename std::add_lvalue_reference<typename ObjectType::secondary_key_type>::type,
                typename SecondaryKeyProxyConst = typename std::add_lvalue_reference<
                                                    typename std::add_const<typename ObjectType::secondary_key_type>::type>::type >
-      class gph_generic_index
+      class token_generic_index
       {
          public:
             typedef typename ObjectType::secondary_key_type secondary_key_type;
@@ -206,7 +206,7 @@ class apply_context {
 
             using secondary_key_helper_t = secondary_key_helper<secondary_key_type, secondary_key_proxy_type, secondary_key_proxy_const_type>;
 
-            gph_generic_index( apply_context& c ):context(c){}
+            token_generic_index( apply_context& c ):context(c){}
 
             int store(uint64_t scope, uint64_t table, const account_name &payer,
                       uint64_t id, secondary_key_proxy_const_type value)
@@ -270,7 +270,7 @@ class apply_context {
 
                 auto table_end_itr = itr_cache.cache_table(*tab);
 
-                const auto &idx = context._db->get_index_type<typename get_gph_index_type<ObjectType>::type>().indices().template get<by_secondary>();
+                const auto &idx = context._db->get_index_type<typename get_token_index_type<ObjectType>::type>().indices().template get<by_secondary>();
                 auto obj = idx.find(secondary_key_helper_t::create_tuple(*tab, secondary));
                 if (obj != idx.end()) return table_end_itr;
 
@@ -286,7 +286,7 @@ class apply_context {
 
                 auto table_end_itr = itr_cache.cache_table(*tab);
 
-                const auto &idx = context._db->get_index_type<typename get_gph_index_type<ObjectType>::type>().indices().template get<by_secondary>();
+                const auto &idx = context._db->get_index_type<typename get_token_index_type<ObjectType>::type>().indices().template get<by_secondary>();
                 auto itr = idx.lower_bound(secondary_key_helper_t::create_tuple(*tab, secondary));
                 if (itr == idx.end()) return table_end_itr;
                 if (itr->t_id != tab->id) return table_end_itr;
@@ -304,7 +304,7 @@ class apply_context {
 
                 auto table_end_itr = itr_cache.cache_table(*tab);
 
-                const auto &idx = context._db->get_index_type<typename get_gph_index_type<ObjectType>::type>().indices().template get<by_secondary>();
+                const auto &idx = context._db->get_index_type<typename get_token_index_type<ObjectType>::type>().indices().template get<by_secondary>();
                 auto itr = idx.upper_bound(secondary_key_helper_t::create_tuple(*tab, secondary));
                 if (itr == idx.end()) return table_end_itr;
                 if (itr->t_id != tab->id) return table_end_itr;
@@ -328,7 +328,7 @@ class apply_context {
                 if (iterator < -1) return -1; // cannot increment past end iterator of index
 
                 const auto &obj = itr_cache.get(iterator); // Check for iterator != -1 happens in this call
-                const auto &idx = context._db->get_index_type<typename get_gph_index_type<ObjectType>::type>().indices().template get<by_secondary>();
+                const auto &idx = context._db->get_index_type<typename get_token_index_type<ObjectType>::type>().indices().template get<by_secondary>();
 
                 auto itr = idx.iterator_to(obj);
                 ++itr;
@@ -341,7 +341,7 @@ class apply_context {
 
             int previous_secondary(int iterator, uint64_t &primary)
             {
-                const auto &idx = context._db->get_index_type<typename get_gph_index_type<ObjectType>::type>().indices().template get<by_secondary>();
+                const auto &idx = context._db->get_index_type<typename get_token_index_type<ObjectType>::type>().indices().template get<by_secondary>();
 
                 if (iterator < -1) // is end iterator
                 {
@@ -379,7 +379,7 @@ class apply_context {
 
                 auto table_end_itr = itr_cache.cache_table(*tab);
 
-                const auto &idx = context._db->get_index_type<typename get_gph_index_type<ObjectType>::type>().indices().template get<by_primary>();
+                const auto &idx = context._db->get_index_type<typename get_token_index_type<ObjectType>::type>().indices().template get<by_primary>();
                 auto obj = idx.find(boost::make_tuple(tab->id, primary));
                 if (obj != idx.end()) return table_end_itr;
                 secondary_key_helper_t::get(secondary, obj->secondary_key);
@@ -394,7 +394,7 @@ class apply_context {
 
                 auto table_end_itr = itr_cache.cache_table(*tab);
 
-                const auto &idx = context._db->get_index_type<typename get_gph_index_type<ObjectType>::type>().indices().template get<by_primary>();
+                const auto &idx = context._db->get_index_type<typename get_token_index_type<ObjectType>::type>().indices().template get<by_primary>();
                 auto itr = idx.lower_bound(boost::make_tuple(tab->id, primary));
                 if (itr == idx.end()) return table_end_itr;
                 if (itr->t_id != tab->id) return table_end_itr;
@@ -409,7 +409,7 @@ class apply_context {
 
                 auto table_end_itr = itr_cache.cache_table(*tab);
 
-                const auto &idx = context._db->get_index_type<typename get_gph_index_type<ObjectType>::type>().indices().template get<by_primary>();
+                const auto &idx = context._db->get_index_type<typename get_token_index_type<ObjectType>::type>().indices().template get<by_primary>();
                 auto itr = idx.upper_bound(boost::make_tuple(tab->id, primary));
                 if (itr == idx.end()) return table_end_itr;
                 if (itr->t_id != tab->id) return table_end_itr;
@@ -423,7 +423,7 @@ class apply_context {
                 if (iterator < -1) return -1; // cannot increment past end iterator of table
 
                 const auto &obj = itr_cache.get(iterator); // Check for iterator != -1 happens in this call
-                const auto &idx = context._db->get_index_type<typename get_gph_index_type<ObjectType>::type>().indices().template get<by_primary>();
+                const auto &idx = context._db->get_index_type<typename get_token_index_type<ObjectType>::type>().indices().template get<by_primary>();
 
                 auto itr = idx.iterator_to(obj);
                 ++itr;
@@ -436,7 +436,7 @@ class apply_context {
 
             int previous_primary(int iterator, uint64_t &primary)
             {
-                const auto &idx = context._db->get_index_type<typename get_gph_index_type<ObjectType>::type>().indices().template get<by_primary>();
+                const auto &idx = context._db->get_index_type<typename get_token_index_type<ObjectType>::type>().indices().template get<by_primary>();
 
                 if (iterator < -1) // is end iterator
                 {
@@ -477,7 +477,7 @@ class apply_context {
          private:
             apply_context&              context;
             iterator_cache<ObjectType>  itr_cache;
-      }; /// class gph_generic_index
+      }; /// class token_generic_index
 
    /// Constructor
    public:
@@ -503,7 +503,7 @@ class apply_context {
       optional<asset>               amount;
       uint64_t                      receiver;
 
-      gph_generic_index<index64_object>                                  idx64;
+      token_generic_index<index64_object>                                  idx64;
 
    private:
       iterator_cache<key_value_object>    keyval_cache;
