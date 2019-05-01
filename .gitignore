@@ -1,6 +1,8 @@
 *.a
 *.sw*
 
+.vs
+
 *.cmake
 CMakeCache.txt
 CMakeFiles
