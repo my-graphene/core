@@ -1,21 +1,18 @@
 [submodule "libraries/fc"]
 	path = libraries/fc
-	url = https://github.com/rui-coin/graphene-fc.git
-[submodule "docs"]
-	path = docs
-	url = https://github.com/rui-coin/rui-core.wiki.git
+	url = https://github.com/my-graphene/graphene-fc.git
 [submodule "libraries/softfloat"]
 	path = libraries/softfloat
-	url = https://github.com/rui-coin/berkeley-softfloat-3.git
+	url = https://github.com/my-graphene/berkeley-softfloat-3.git
 [submodule "externals/binaryen"]
 	path = externals/binaryen
-	url = https://github.com/rui-coin/binaryen.git
+	url = https://github.com/my-graphene/binaryen.git
 [submodule "externals/magic_get"]
 	path = externals/magic_get
-	url = https://github.com/rui-coin/magic_get.git
+	url = https://github.com/my-graphene/magic_get.git
 [submodule "contracts/libc++/upstream"]
 	path = contracts/libc++/upstream
-	url = https://github.com/rui-coin/libcxx.git
+	url = https://github.com/my-graphene/libcxx.git
 [submodule "contracts/musl/upstream"]
 	path = contracts/musl/upstream
-	url = https://github.com/rui-coin/musl.git
+	url = https://github.com/my-graphene/musl.git
