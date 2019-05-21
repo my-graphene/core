@@ -3,6 +3,7 @@
 
 *.vs*
 
+*.cmake
 CMakeCache.txt
 CMakeFiles
 Makefile
@@ -11,7 +12,7 @@ moc_*
 *.moc
 
 genesis.json
-
+hardfork.hpp
 *.config*
 *.creator*
 *.files*
