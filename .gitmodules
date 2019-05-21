@@ -1,6 +1,3 @@
-[submodule "docs"]
-	path = docs
-	url = https://github.com/bitshares/bitshares-core.wiki.git
 [submodule "libraries/fc"]
 	path = libraries/fc
-	url = https://github.com/bitshares/bitshares-fc.git
+	url = https://github.com/my-graphene/fc.git
