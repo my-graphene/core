@@ -1,11 +1,5 @@
-RuiChain
+Chain
 ==============
-
-[Build Status](https://github.com/my-graphene/core/branches):
-
-`master` | `develop`  
- --- | --- | --- | --- | ---
- [![master](https://github.com/my-graphene/core/master)](https://github.com/my-graphene/core) | [![develop](https://github.com/my-graphene/core/tree/develop)](https://github.com/my-graphene/core)
 
 * [Getting Started](#getting-started)
 * [Support](#support)
@@ -14,11 +8,11 @@ RuiChain
 * [FAQ](#faq)
 * [License](#license)
 
-RuiChain Core is the RuiChain blockchain implementation and command-line interface.
-RUI Chain is developed based on graphene, namely the project of RuiChain. We have made our own consensus mechanism, aka D-DPoS, in brief a contribution-based and relatively randomized super-node election mechanism, in order to avoid ballot rigging and improve security. Also, we have implemented our own virtual machine (which is not included in RuiChain) for smart contracts, which is also compatible with Solidarity, the most popular Ethereum smart contract language.
-The web wallet is [RuiChain UI](https://github.com/my-graphene/rui-ui).
+Core is the blockchain implementation and command-line interface.
+It is developed based on graphene . We have made our own consensus mechanism, aka D-DPoS, in brief a contribution-based and relatively randomized super-node election mechanism, in order to avoid ballot rigging and improve security. Also, we have implemented our own virtual machine (which is not included in RuiChain) for smart contracts, which is also compatible with Solidarity, the most popular Ethereum smart contract language.
+The web wallet is [UI](https://github.com/my-graphene/ui).
 
-**NOTE:** The official RuiChain git repository location, default branch, and submodule remotes were recently changed. Existing
+**NOTE:** The official git repository location, default branch, and submodule remotes were recently changed. Existing
 repositories can be updated with the following steps:
 
     git remote set-url origin https://github.com/my-graphene/core.git
@@ -48,9 +42,9 @@ To build after all dependencies are installed:
     cmake -DCMAKE_BUILD_TYPE=RelWithDebInfo .
     make
 
-**NOTE:** RuiChain requires an [OpenSSL](https://www.openssl.org/) version in the 1.0.x series. OpenSSL 1.1.0 and newer are NOT supported. If your system OpenSSL version is newer, then you will need to manually provide an older version of OpenSSL and specify it to CMake using `-DOPENSSL_INCLUDE_DIR`, `-DOPENSSL_SSL_LIBRARY`, and `-DOPENSSL_CRYPTO_LIBRARY`.
+**NOTE:** Chain requires an [OpenSSL](https://www.openssl.org/) version in the 1.0.x series. OpenSSL 1.1.0 and newer are NOT supported. If your system OpenSSL version is newer, then you will need to manually provide an older version of OpenSSL and specify it to CMake using `-DOPENSSL_INCLUDE_DIR`, `-DOPENSSL_SSL_LIBRARY`, and `-DOPENSSL_CRYPTO_LIBRARY`.
 
-**NOTE:** RuiChain requires a [Boost](http://www.boost.org/) version in the range [1.57, 1.63]. Versions earlier than
+**NOTE:** Chain requires a [Boost](http://www.boost.org/) version in the range [1.57, 1.63]. Versions earlier than
 1.57 or newer than 1.63 are NOT supported. If your system Boost version is newer, then you will need to manually build
 an older version of Boost and specify it to CMake using `DBOOST_ROOT`.
 
@@ -88,9 +82,9 @@ Use `help` to see all available wallet commands. Source definition and listing o
 Support
 -------
 
-RuiChain Core bugs can be reported directly to the [issue tracker](https://github.com/my-graphene/core/issues).
+Core bugs can be reported directly to the [issue tracker](https://github.com/my-graphene/core/issues).
 
-RuiChain UI bugs should be reported to the [UI issue tracker](https://github.com/my-graphene/rui-ui/issues)
+UI bugs should be reported to the [UI issue tracker](https://github.com/my-graphene/ui/issues)
 
 Using the API
 -------------

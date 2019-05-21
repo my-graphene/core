@@ -930,7 +930,7 @@ void process_hf_868_890( database& db, bool skip_check_call_orders )
                ("asset_sym", current_asset.symbol)("asset_id", current_asset.id) );
       }
 
-      // Note: due to token-core issue #935, the check below (using median_changed) is incorrect.
+      // Note: due to core issue #935, the check below (using median_changed) is incorrect.
       //       However, `skip_check_call_orders` will likely be true in both testnet and mainnet,
       //         so effectively the incorrect code won't make a difference.
       //       Additionally, we have code to update all call orders again during hardfork core-935

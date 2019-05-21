@@ -1,6 +1,6 @@
 [submodule "libraries/fc"]
 	path = libraries/fc
-	url = https://github.com/my-graphene/graphene-fc.git
+	url = https://github.com/my-graphene/fc.git
 [submodule "libraries/softfloat"]
 	path = libraries/softfloat
 	url = https://github.com/my-graphene/berkeley-softfloat-3.git
