@@ -585,7 +585,7 @@ BOOST_AUTO_TEST_CASE( merkle_root )
 }
 
 /**
- * Reproduces https://github.com/rui-coin/rui-core/issues/888 and tests fix for it.
+ * Reproduces https://github.com/my-graphene/core/issues/888 and tests fix for it.
  */
 BOOST_AUTO_TEST_CASE( bitasset_feed_expiration_test )
 {

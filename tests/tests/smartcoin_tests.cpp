@@ -48,8 +48,8 @@ BOOST_AUTO_TEST_CASE(bsip36)
        */
 
       /* References:
-       * BSIP 36: https://github.com/rui-coin/bsips/blob/master/bsip-0036.md
-       * and the former: CORE Issue 518: https://github.com/rui-coin/rui-core/issues/518
+       * BSIP 36: https://github.com/my-graphene/bsips/blob/master/bsip-0036.md
+       * and the former: CORE Issue 518: https://github.com/my-graphene/core/issues/518
        */
 
       // Create 12 accounts to be witnesses under our control

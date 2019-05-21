@@ -1,11 +1,11 @@
 RuiChain
 ==============
 
-[Build Status](https://github.com/rui-coin/rui-core/branches):
+[Build Status](https://github.com/my-graphene/core/branches):
 
 `master` | `develop`  
  --- | --- | --- | --- | ---
- [![master](https://github.com/rui-coin/rui-core/master)](https://github.com/rui-coin/rui-core) | [![develop](https://github.com/rui-coin/rui-core/tree/develop)](https://github.com/rui-coin/rui-core)
+ [![master](https://github.com/my-graphene/core/master)](https://github.com/my-graphene/core) | [![develop](https://github.com/my-graphene/core/tree/develop)](https://github.com/my-graphene/core)
 
 * [Getting Started](#getting-started)
 * [Support](#support)
@@ -16,12 +16,12 @@ RuiChain
 
 RuiChain Core is the RuiChain blockchain implementation and command-line interface.
 RUI Chain is developed based on graphene, namely the project of RuiChain. We have made our own consensus mechanism, aka D-DPoS, in brief a contribution-based and relatively randomized super-node election mechanism, in order to avoid ballot rigging and improve security. Also, we have implemented our own virtual machine (which is not included in RuiChain) for smart contracts, which is also compatible with Solidarity, the most popular Ethereum smart contract language.
-The web wallet is [RuiChain UI](https://github.com/rui-coin/rui-ui).
+The web wallet is [RuiChain UI](https://github.com/my-graphene/rui-ui).
 
 **NOTE:** The official RuiChain git repository location, default branch, and submodule remotes were recently changed. Existing
 repositories can be updated with the following steps:
 
-    git remote set-url origin https://github.com/rui-coin/rui-core.git
+    git remote set-url origin https://github.com/my-graphene/core.git
     git checkout master
     git remote set-head origin --auto
     git pull
@@ -32,7 +32,7 @@ Getting Started
 ---------------
 
 Build instructions and additional documentation are available in the
-[wiki](https://github.com/rui-coin/rui-core/wiki).
+[wiki](https://github.com/my-graphene/core/wiki).
 
 We recommend building on Ubuntu 16.04 LTS, and the build dependencies may be installed with:
 
@@ -41,8 +41,8 @@ We recommend building on Ubuntu 16.04 LTS, and the build dependencies may be ins
 
 To build after all dependencies are installed:
 
-    git clone https://github.com/rui-coin/rui-core.git
-    cd rui-core
+    git clone https://github.com/my-graphene/core.git
+    cd core
     git checkout <LATEST_RELEASE_TAG>
     git submodule update --init --recursive
     cmake -DCMAKE_BUILD_TYPE=RelWithDebInfo .
@@ -64,7 +64,7 @@ the blockchain. After syncing, you can exit the node using Ctrl+C and setup the 
 
     rpc-endpoint = 127.0.0.1:8090
 
-**NOTE:** By default the witness node will start in reduced memory ram mode by using some of the commands detailed in [Memory reduction for nodes](https://github.com/rui-coin/rui-core/wiki/Memory-reduction-for-nodes).
+**NOTE:** By default the witness node will start in reduced memory ram mode by using some of the commands detailed in [Memory reduction for nodes](https://github.com/my-graphene/core/wiki/Memory-reduction-for-nodes).
 In order to run a full node with all the account history you need to remove `partial-operations` and `max-ops-per-account` from your config file. Please note that currently(2017-12-23) a full node need 54GB of RAM to operate and required memory is growing fast.
 
 After starting the witness node again, in a separate terminal you can run:
@@ -83,14 +83,14 @@ To import your initial balance:
 If you send private keys over this connection, `rpc-endpoint` should be bound to localhost for security.
 
 Use `help` to see all available wallet commands. Source definition and listing of all commands is available
-[here](https://github.com/rui-coin/rui-core/blob/master/libraries/wallet/include/graphene/wallet/wallet.hpp).
+[here](https://github.com/my-graphene/core/blob/master/libraries/wallet/include/graphene/wallet/wallet.hpp).
 
 Support
 -------
 
-RuiChain Core bugs can be reported directly to the [issue tracker](https://github.com/rui-coin/rui-core/issues).
+RuiChain Core bugs can be reported directly to the [issue tracker](https://github.com/my-graphene/core/issues).
 
-RuiChain UI bugs should be reported to the [UI issue tracker](https://github.com/rui-coin/rui-ui/issues)
+RuiChain UI bugs should be reported to the [UI issue tracker](https://github.com/my-graphene/rui-ui/issues)
 
 Using the API
 -------------
@@ -203,7 +203,7 @@ FAQ
 
     The second number specifies the *type*.  The type of the object determines what fields it has.  For a
     complete list of type ID's, see `enum object_type` and `enum impl_object_type` in
-    [types.hpp](https://github.com/rui-coin/rui-2/blob/rui-coin/libraries/chain/include/graphene/chain/protocol/types.hpp).
+    [types.hpp](https://github.com/my-graphene/rui-2/blob/my-graphene/libraries/chain/include/graphene/chain/protocol/types.hpp).
 
     The third number specifies the *instance*.  The instance of the object is different for each individual
     object.
@@ -237,5 +237,5 @@ FAQ
 License
 -------
 
-RuiChain Core is under the MIT license. See [LICENSE](https://github.com/rui-coin/rui-core/blob/master/LICENSE.txt)
+RuiChain Core is under the MIT license. See [LICENSE](https://github.com/my-graphene/core/blob/master/LICENSE.txt)
 for more information.

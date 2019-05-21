@@ -59,14 +59,14 @@ call_contract nathan dice {"amount":10000000,"asset_id":1.3.0} deposit "{}" RUI 
 * 生成resource：
 
 ```text
-➜  rui-core git:(dev_master) openssl rand 32 -hex
+➜  core git:(dev_master) openssl rand 32 -hex
 7d65a071c3f8b38f94e11be1fda97109ea41dfd305e06e677a55edd957327fab
 ```
 
 * 根据resource生成commitment：
 
 ```text
-➜  rui-core git:(dev_master) ✗ echo -n '7d65a071c3f8b38f94e11be1fda97109ea41dfd305e06e677a55edd957327fab' | xxd -r -p | shasum -a 256 -b
+➜  core git:(dev_master) ✗ echo -n '7d65a071c3f8b38f94e11be1fda97109ea41dfd305e06e677a55edd957327fab' | xxd -r -p | shasum -a 256 -b
 24948ec739cd9963bae8805ae18a4a2f4d58689b8d48dc20f289c3ded47ef600 *-
 ```
 

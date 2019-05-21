@@ -38,7 +38,7 @@ BOOST_FIXTURE_TEST_SUITE(market_rounding_tests, database_fixture)
 /**
  *  Create an order such that when the trade executes at the
  *  requested price the resulting payout to one party is 0
- *  ( Reproduces https://github.com/rui-coin/rui-core/issues/184 )
+ *  ( Reproduces https://github.com/my-graphene/core/issues/184 )
  */
 BOOST_AUTO_TEST_CASE( trade_amount_equals_zero )
 {
@@ -92,7 +92,7 @@ BOOST_AUTO_TEST_CASE( trade_amount_equals_zero )
 }
 
 /**
- *  The something-for-nothing bug should be fixed https://github.com/rui-coin/rui-core/issues/184
+ *  The something-for-nothing bug should be fixed https://github.com/my-graphene/core/issues/184
  */
 BOOST_AUTO_TEST_CASE( trade_amount_equals_zero_after_hf_184 )
 {
