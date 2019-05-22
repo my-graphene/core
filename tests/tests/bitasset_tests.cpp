@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018 RuiChain Foundation, and contributors.
+ * Copyright (c) 2018 Graphene Foundation, and contributors.
  *
  * The MIT License
  *

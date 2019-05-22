@@ -164,8 +164,7 @@ void application_impl::reset_p2p_node(const fc::path& data_dir)
    }
    else
    {
-	  vector<string> seeds = {
-	  };
+      vector<string> seeds = {};
       for( const string& endpoint_string : seeds )
       {
          try {
