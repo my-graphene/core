@@ -31,7 +31,8 @@ class redpacket : public contract
     {
         // check publick key
         // TODO
-        std::string prefix("RUI");
+        //liruigang20190626
+        std::string prefix(GRAPHENE_SYMBOL);
         const size_t prefix_len = prefix.size();
         graphene_assert(pubkey.size() > prefix_len, "invalid public key");
         graphene_assert(pubkey.substr(0, prefix_len) == prefix, "invalid public key");
