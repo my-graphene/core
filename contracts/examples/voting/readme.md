@@ -14,14 +14,14 @@ mycc -g voting.abi voting.cpp
 部署合约要求账户私钥已经导入钱包，并且是解锁状态
 
 ```bash
-unlocked >>> deploy_contract voting nathan 0 0 ./voting RUI true
+unlocked >>> deploy_contract voting nathan 0 0 ./voting <TOKEN> true
 ```
 
 * voting指定将要创建的合约名
 * nathan为部署合约的帐户
 * 0 0 分别指定了vm类型和版本号
 * ./voting指定合约文件的路径
-* RUI表示使用RUI支付手续费
+* <TOKEN>表示使用<TOKEN>支付手续费
 * true表示执行，发起广播
 
 ## 调用合约
@@ -29,17 +29,17 @@ unlocked >>> deploy_contract voting nathan 0 0 ./voting RUI true
 ### 投票
 
 ```bash
-call_contract nathan voting null vote "{\"id\":1, \"name\":\"user1\"}" RUI true
-call_contract nathan voting null vote "{\"id\":1, \"name\":\"user1\"}" RUI true
+call_contract nathan voting null vote "{\"id\":1, \"name\":\"user1\"}" <TOKEN> true
+call_contract nathan voting null vote "{\"id\":1, \"name\":\"user1\"}" <TOKEN> true
 
-call_contract nathan voting null vote "{\"id\":2, \"name\":\"user2\"}" RUI true
-call_contract nathan voting null vote "{\"id\":3, \"name\":\"user3\"}" RUI true
+call_contract nathan voting null vote "{\"id\":2, \"name\":\"user2\"}" <TOKEN> true
+call_contract nathan voting null vote "{\"id\":3, \"name\":\"user3\"}" <TOKEN> true
 ```
 
 ### 查看票数
 
 ```
-call_contract nathan voting null count "{\"id\":1}" RUI true
+call_contract nathan voting null count "{\"id\":1}" <TOKEN> true
 ```
 
 此时在witness_node运行日志看到如下内容.
@@ -53,7 +53,7 @@ id=1, name=user1, count=2
 ### 查看投票列表
 
 ```bash
-call_contract nathan voting null list "{}" RUI true
+call_contract nathan voting null list "{}" <TOKEN> true
 ```
 
 此时在witness_node运行日志看到如下内容.
@@ -69,7 +69,7 @@ id=3, name=user3, count=1
 ### 删除候选人
 
 ```
-call_contract nathan voting null remove "{\"id\":1}" RUI true
+call_contract nathan voting null remove "{\"id\":1}" <TOKEN> true
 ```
 
 此时在witness_node运行日志看到如下内容.

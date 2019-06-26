@@ -30,7 +30,7 @@ cli_wallet -sws:///127.0.0.1:28099 --chain-id xxxx
 
 ```bash
 // 这里使用nathan帐户部署合约，部署的合约名为riddle
-unlocked >>> deploy_contract riddle nathan 0 0 ./contracts/examples/riddle RUI true
+unlocked >>> deploy_contract riddle nathan 0 0 ./contracts/examples/riddle <TOKEN> true
 ```
 
 ### 调用合约
@@ -45,7 +45,7 @@ unlocked >>> deploy_contract riddle nathan 0 0 ./contracts/examples/riddle RUI t
 
   ```bash
   // 发起谜题
-  call_contract nathan riddle null issue "{\"question\":\"1 + 2 = ?\", \"hashed_answer\":\"810d7c3ca6aa6411102588f8636833035138a35f32f5e7b2df96d2ab2dc4d660\"}" RUI true
+  call_contract nathan riddle null issue "{\"question\":\"1 + 2 = ?\", \"hashed_answer\":\"810d7c3ca6aa6411102588f8636833035138a35f32f5e7b2df96d2ab2dc4d660\"}" <TOKEN> true
   ```
 
 * 查询riddle合约的存储表
@@ -64,7 +64,7 @@ unlocked >>> deploy_contract riddle nathan 0 0 ./contracts/examples/riddle RUI t
 
   ```bash
   // 使用nathan帐户解谜
-  unlocked >>> call_contract nathan riddle null reveal "{\"issuer\":\"nathan\", \"answer\":\"I don't know.\"}" RUI true
+  unlocked >>> call_contract nathan riddle null reveal "{\"issuer\":\"nathan\", \"answer\":\"I don't know.\"}" <TOKEN> true
   ```
 
 * 合约存储表

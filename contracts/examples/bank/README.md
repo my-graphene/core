@@ -28,7 +28,7 @@ mycc -g contracts/examples/bank/bank.abi contracts/examples/bank/bank.cpp
 
 ```bash
 // 这里使用nathan帐户部署合约，部署的合约名为bank
-unlocked >>> deploy_contract bank nathan 0 0 ./contracts/examples/bank RUI true
+unlocked >>> deploy_contract bank nathan 0 0 ./contracts/examples/bank <TOKEN> true
 ```
 
 ### 调用合约
@@ -36,15 +36,15 @@ unlocked >>> deploy_contract bank nathan 0 0 ./contracts/examples/bank RUI true
 * 调用合约的deposit方法
 
   ```bash
-  // 使用nathan帐户，调用bank合约，方法名为deposit,  发送资产总量为100 RUI(链上为大数，需要乘以10万)
-  unlocked >>> call_contract nathan bank {"amount":10000000,"asset_id":1.3.1} deposit "{}" RUI true
+  // 使用nathan帐户，调用bank合约，方法名为deposit,  发送资产总量为100 <TOKEN>(链上为大数，需要乘以10万)
+  unlocked >>> call_contract nathan bank {"amount":10000000,"asset_id":1.3.1} deposit "{}" <TOKEN> true
   ```
 
 * 查询bank合约的帐户余额
 
   ```bash
   unlocked >>> list_account_balances bank
-  100 RUI
+  100 <TOKEN>
   ```
 
 * 列出合约所有的存储表
@@ -77,8 +77,8 @@ unlocked >>> deploy_contract bank nathan 0 0 ./contracts/examples/bank RUI true
 
   ```bash
   // 提现到nathan帐户
-  unlocked >>> call_contract nathan bank null withdraw "{\"to_account\":\"nathan\", \"amount\":{\"asset_id\": 1, \"amount\":100000}}" RUI true
+  unlocked >>> call_contract nathan bank null withdraw "{\"to_account\":\"nathan\", \"amount\":{\"asset_id\": 1, \"amount\":100000}}" <TOKEN> true
 
   // 提现到init0帐户
-  unlocked >>> call_contract nathan bank null withdraw "{\"to_account\":\"init0\", \"amount\":{\"asset_id\": 1, \"amount\":100000}}" RUI true
+  unlocked >>> call_contract nathan bank null withdraw "{\"to_account\":\"init0\", \"amount\":{\"asset_id\": 1, \"amount\":100000}}" <TOKEN> true
   ```
