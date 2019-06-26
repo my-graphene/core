@@ -43,7 +43,9 @@ namespace graphene { namespace chain {
     {
       // TODO:  Refactor syntactic checks into static is_valid()
       //        to make public_key_type API more similar to address API
-       std::string prefix( GRAPHENE_ADDRESS_PREFIX );
+       //liruigang 20190626
+       //std::string prefix( GRAPHENE_ADDRESS_PREFIX );
+       std::string prefix( GRAPHENE_SYMBOL );
        const size_t prefix_len = prefix.size();
        FC_ASSERT( base58str.size() > prefix_len );
        FC_ASSERT( base58str.substr( 0, prefix_len ) ==  prefix , "", ("base58str", base58str) );
@@ -69,7 +71,9 @@ namespace graphene { namespace chain {
        k.data = key_data;
        k.check = fc::ripemd160::hash( k.data.data, k.data.size() )._hash[0];
        auto data = fc::raw::pack( k );
-       return GRAPHENE_ADDRESS_PREFIX + fc::to_base58( data.data(), data.size() );
+       //liruigang20190626
+       //return GRAPHENE_ADDRESS_PREFIX + fc::to_base58( data.data(), data.size() );
+       return GRAPHENE_SYMBOL + fc::to_base58( data.data(), data.size() );
     }
 
     bool operator == ( const public_key_type& p1, const fc::ecc::public_key& p2)
@@ -101,7 +105,9 @@ namespace graphene { namespace chain {
       
     extended_public_key_type::extended_public_key_type( const std::string& base58str )
     {
-       std::string prefix( GRAPHENE_ADDRESS_PREFIX );
+       //liruigang 20190626
+       //std::string prefix( GRAPHENE_ADDRESS_PREFIX );
+       std::string prefix( GRAPHENE_SYMBOL );
 
        const size_t prefix_len = prefix.size();
        FC_ASSERT( base58str.size() > prefix_len );
@@ -123,7 +129,9 @@ namespace graphene { namespace chain {
        k.data = key_data;
        k.check = fc::ripemd160::hash( k.data.data, k.data.size() )._hash[0];
        auto data = fc::raw::pack( k );
-       return GRAPHENE_ADDRESS_PREFIX + fc::to_base58( data.data(), data.size() );
+       //liruigang20190626
+       //return GRAPHENE_ADDRESS_PREFIX + fc::to_base58( data.data(), data.size() );
+       return GRAPHENE_SYMBOL + fc::to_base58( data.data(), data.size() );
     }
     
     bool operator == ( const extended_public_key_type& p1, const fc::ecc::extended_public_key& p2)
@@ -155,7 +163,9 @@ namespace graphene { namespace chain {
     
     extended_private_key_type::extended_private_key_type( const std::string& base58str )
     {
-       std::string prefix( GRAPHENE_ADDRESS_PREFIX );
+       //liruigang 20190626
+       //std::string prefix( GRAPHENE_ADDRESS_PREFIX );
+       std::string prefix( GRAPHENE_SYMBOL );
 
        const size_t prefix_len = prefix.size();
        FC_ASSERT( base58str.size() > prefix_len );
@@ -177,7 +187,9 @@ namespace graphene { namespace chain {
        k.data = key_data;
        k.check = fc::ripemd160::hash( k.data.data, k.data.size() )._hash[0];
        auto data = fc::raw::pack( k );
-       return GRAPHENE_ADDRESS_PREFIX + fc::to_base58( data.data(), data.size() );
+       //liruigang20190626
+       //return GRAPHENE_ADDRESS_PREFIX + fc::to_base58( data.data(), data.size() );
+       return GRAPHENE_SYMBOL + fc::to_base58( data.data(), data.size() );
     }
     
     bool operator == ( const extended_private_key_type& p1, const fc::ecc::extended_public_key& p2)

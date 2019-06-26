@@ -33,7 +33,9 @@ namespace graphene {
 
    address::address( const std::string& base58str )
    {
-      std::string prefix( GRAPHENE_ADDRESS_PREFIX );
+      //liruigang 20190626
+      //std::string prefix( GRAPHENE_ADDRESS_PREFIX );
+      std::string prefix( GRAPHENE_SYMBOL );
       FC_ASSERT( is_valid( base58str, prefix ), "${str}", ("str",base58str) );
 
       std::vector<char> v = fc::from_base58( base58str.substr( prefix.size() ) );
@@ -94,7 +96,9 @@ namespace graphene {
         memcpy( (char*)&bin_addr, (char*)&addr, sizeof( addr ) );
         auto checksum = fc::ripemd160::hash( (char*)&addr, sizeof( addr ) );
         memcpy( ((char*)&bin_addr)+20, (char*)&checksum._hash[0], 4 );
-        return GRAPHENE_ADDRESS_PREFIX + fc::to_base58( bin_addr.data, sizeof( bin_addr ) );
+        //liruigang 20190626
+        //return GRAPHENE_ADDRESS_PREFIX + fc::to_base58( bin_addr.data, sizeof( bin_addr ) );
+        return GRAPHENE_SYMBOL + fc::to_base58( bin_addr.data, sizeof( bin_addr ) );
    }
 
 } } // namespace graphene::chain

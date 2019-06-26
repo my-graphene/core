@@ -58,7 +58,9 @@ namespace graphene { namespace chain {
        address( const pts_address& pub ); ///< converts to binary
        address( const public_key_type& pubkey );
 
-       static bool is_valid( const std::string& base58str, const std::string& prefix = GRAPHENE_ADDRESS_PREFIX );
+       //liruigang 20190626
+       //static bool is_valid( const std::string& base58str, const std::string& prefix = GRAPHENE_ADDRESS_PREFIX );
+       static bool is_valid( const std::string& base58str, const std::string& prefix = GRAPHENE_SYMBOL );
 
        explicit operator std::string()const; ///< converts to base58 + checksum
 

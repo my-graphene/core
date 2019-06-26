@@ -67,7 +67,9 @@ BOOST_FIXTURE_TEST_SUITE(wallet_tests, database_fixture)
           /***
            * Assert: Check whether every public key begins with the expected prefix
            */
-          string expected_prefix = GRAPHENE_ADDRESS_PREFIX;
+          //liruigang20190626
+          //string expected_prefix = GRAPHENE_ADDRESS_PREFIX;
+          string expected_prefix = GRAPHENE_SYMBOL;
           for (auto info : derived_keys) {
               string description = (string) info.pub_key;
               BOOST_CHECK_EQUAL(0, description.find(expected_prefix));
