@@ -1,6 +1,6 @@
 *.a
 *.sw*
-
+build
 .vs
 
 *.cmake
