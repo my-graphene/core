@@ -41,11 +41,6 @@
 #include <cfenv>
 #include <iostream>
 
-//liruigang 20180829 update
-#include <chaind.hpp>
-#include <jsoncpp/json/reader.h>
-#include <jsoncpp/json/json.h>
-
 #define GET_REQUIRED_FEES_MAX_RECURSION 4
 
 typedef std::map< std::pair<graphene::chain::asset_id_type, graphene::chain::asset_id_type>, std::vector<fc::variant> > market_queue_type;
@@ -1983,47 +1978,22 @@ vector< fc::variant > database_api::get_required_fees( const vector<operation>& 
  */
 struct get_required_fees_helper
 {
-   get_required_fees_helper( const asset_object& _asset,
+   get_required_fees_helper(
       const fee_schedule& _current_fee_schedule,
       const price& _core_exchange_rate,
       uint32_t _max_recursion
       )
-	  : m_asset(_asset), //liruigang 20180829 update: calc fee
+	  :
 		current_fee_schedule(_current_fee_schedule),
         core_exchange_rate(_core_exchange_rate),
         max_recursion(_max_recursion)
    {}
-
-   //liruigang 20180829 update: calc fee
-   void set_asset_fee(transfer_operation& transop, share_type& fee_amount, const string& symbol )
-   {
-	   fee_amount = 0;
-
-	   Json::Value root ;
-	   root[0] = COIN_FEE_CALC ;
-	   root[1] = symbol ; ;
-	   root[2] = Json::Value::Int64(transop.amount.amount.value) ;
-	   string s_json = root.toStyledString() ;
-
-	   g_chaind.set_asset_fee( s_json, fee_amount );
-   }
 
    fc::variant set_op_fees( operation& op )
    {
       if( op.which() == operation::tag<proposal_create_operation>::value ) {
          return set_proposal_create_op_fees( op );
       }
-
-	  //liruigang 20180829 update: calc fee
-	  if( op.which() == operation::tag<transfer_operation>::value ) {
-		  transfer_operation& transop = op.get<transfer_operation>();
-
-		  set_asset_fee(transop, transop.fee.amount, m_asset.symbol );
-
-		  fc::variant result;
-		  fc::to_variant( transop.fee, result, GRAPHENE_NET_MAX_NESTED_OBJECTS );
-		  return result;
-	  }
 
      asset fee = current_fee_schedule.set_fee( op, core_exchange_rate );
      fc::variant result;
@@ -2050,9 +2020,6 @@ struct get_required_fees_helper
       return vresult;
    }
 
-   //liruigang 20180829 update: calc fee
-   const asset_object& m_asset;
-
    const fee_schedule& current_fee_schedule;
    const price& core_exchange_rate;
    uint32_t max_recursion;
@@ -2070,10 +2037,11 @@ vector< fc::variant > database_api_impl::get_required_fees( const vector<operati
    vector< fc::variant > result;
    result.reserve(ops.size());
    const asset_object& asset = id(_db);
-   get_required_fees_helper helper(asset, //liruigang 20180816 calc fee
-      _db.current_fee_schedule(),
+
+   get_required_fees_helper helper(
+	  _db.current_fee_schedule(),
 	  asset.options.core_exchange_rate,
-      GET_REQUIRED_FEES_MAX_RECURSION );
+	  GET_REQUIRED_FEES_MAX_RECURSION );
    for( operation& op : _ops )
    {
 	 result.push_back( helper.set_op_fees( op ) );

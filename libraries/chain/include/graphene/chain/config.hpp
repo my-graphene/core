@@ -115,11 +115,6 @@
 
 #define GRAPHENE_MAX_URL_LENGTH                               127
 
-//liruigang 20180829 update : operate type
-#define COIN_ADD_BLACKLIST	0
-#define COIN_TRANSFER	1
-#define COIN_FEE_CALC	2
-
 // counter initialization values used to derive near and far future seeds for shuffling witnesses
 // we use the fractional bits of sqrt(2) in hex
 #define GRAPHENE_NEAR_SCHEDULE_CTR_IV                    ( (uint64_t( 0x6a09 ) << 0x30)    \
